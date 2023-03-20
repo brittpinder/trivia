@@ -9,14 +9,17 @@ import UIKit
 
 class AnswerButton: UIButton {
 
+    let index: Int
+
     enum ButtonState {
-        case normal, correct, incorrect
+        case normal, correct, incorrect, highlightCorrect
     }
     private var buttonState = ButtonState.normal
 
     private var icon = UIImageView()
 
-    init(answer: String) {
+    init(answer: String, index: Int) {
+        self.index = index
         super.init(frame: .zero)
         configureView(with: answer)
     }
@@ -76,6 +79,10 @@ extension AnswerButton {
             setTitleColor(.white, for: .normal)
             icon.image = UIImage(systemName: "xmark")
             icon.isHidden = false
+        case .highlightCorrect:
+            backgroundColor = .systemGreen
+            setTitleColor(.white, for: .normal)
+            icon.isHidden = true
         }
     }
 }
