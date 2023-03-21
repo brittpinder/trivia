@@ -43,6 +43,9 @@ extension AnswerButton {
 
         setTitle(answer, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.numberOfLines = 0
+        titleLabel?.textAlignment = .center
 
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: 64).isActive = true

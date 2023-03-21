@@ -8,13 +8,19 @@
 import Foundation
 
 class TriviaSession {
-    private let questions: [Question] = [Question(question: "Which animal can fly?", answers: ["Dolphin", "Eagle", "Dog", "Elephant"], correctIndex: 1)!,
-                                 Question(question: "What is the capital of Canada?", answers: ["Toronto", "Ontario", "Ottawa", "Vancouver"], correctIndex: 2)!,
-                                 Question(question: "Which is a prime number?", answers: ["3", "4", "6", "8"], correctIndex: 0)!]
-
+    private let questions: [Question]
     private var questionIndex = -1
     private var currentQuestion: Question? = nil
     private(set) var totalCorrect = 0
+
+    init?(questionData: [QuestionData]) {
+        self.questions = QuestionUtil.getQuestions(from: questionData)
+
+        if self.questions.isEmpty {
+            assertionFailure("Failed to get any questions from questionData")
+            return nil
+        }
+    }
 
     var numberOfQuestions: Int {
         return questions.count

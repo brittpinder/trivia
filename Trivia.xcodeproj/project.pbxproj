@@ -24,6 +24,8 @@
 		E1F9428029C9E8330082BA11 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9427F29C9E8330082BA11 /* ResultsViewController.swift */; };
 		E1F9428329C9F1290082BA11 /* ResultsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428229C9F1290082BA11 /* ResultsDetailView.swift */; };
 		E1F9428629CA0CA10082BA11 /* UILabel+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428529CA0CA10082BA11 /* UILabel+Util.swift */; };
+		E1F9428929CA1EE90082BA11 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428829CA1EE90082BA11 /* NetworkManager.swift */; };
+		E1F9428B29CA25310082BA11 /* QuestionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428A29CA25310082BA11 /* QuestionUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		E1F9427F29C9E8330082BA11 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		E1F9428229C9F1290082BA11 /* ResultsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsDetailView.swift; sourceTree = "<group>"; };
 		E1F9428529CA0CA10082BA11 /* UILabel+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Util.swift"; sourceTree = "<group>"; };
+		E1F9428829CA1EE90082BA11 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E1F9428A29CA25310082BA11 /* QuestionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 		E1F9423F29C8B5FC0082BA11 /* Trivia */ = {
 			isa = PBXGroup;
 			children = (
+				E1F9428729CA1ED80082BA11 /* Networking */,
 				E1F9427829C8EE2A0082BA11 /* Model */,
 				E1F9427229C8C8F40082BA11 /* UI */,
 				E1F9428429CA0C8D0082BA11 /* Util */,
@@ -187,8 +192,17 @@
 			isa = PBXGroup;
 			children = (
 				E1F9428529CA0CA10082BA11 /* UILabel+Util.swift */,
+				E1F9428A29CA25310082BA11 /* QuestionUtil.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		E1F9428729CA1ED80082BA11 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E1F9428829CA1EE90082BA11 /* NetworkManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +338,8 @@
 				E1F9427529C8C92D0082BA11 /* AnswerButton.swift in Sources */,
 				E1F9427C29C8EFC60082BA11 /* TriviaSession.swift in Sources */,
 				E1F9424529C8B5FC0082BA11 /* StartViewController.swift in Sources */,
+				E1F9428B29CA25310082BA11 /* QuestionUtil.swift in Sources */,
+				E1F9428929CA1EE90082BA11 /* NetworkManager.swift in Sources */,
 				E1F9427E29C8F20A0082BA11 /* CapsuleButton.swift in Sources */,
 				E1F9428629CA0CA10082BA11 /* UILabel+Util.swift in Sources */,
 				E1F9424129C8B5FC0082BA11 /* AppDelegate.swift in Sources */,

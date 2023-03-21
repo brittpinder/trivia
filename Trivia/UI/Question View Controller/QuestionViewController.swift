@@ -9,12 +9,21 @@ import UIKit
 
 class QuestionViewController: UIViewController {
 
-    var triviaSession = TriviaSession()
+    var triviaSession: TriviaSession
 
     var questionLabel = UILabel()
     var answerButtons = [AnswerButton]()
     var answerButtonStackView = UIStackView()
     var nextButton = CapsuleButton(title: "Next", color: .systemPurple)
+
+    init(triviaSession: TriviaSession) {
+        self.triviaSession = triviaSession
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +82,7 @@ extension QuestionViewController {
         questionLabel.textColor = .white
         questionLabel.font = UIFont.boldSystemFont(ofSize: 26)
         questionLabel.numberOfLines = -1
+        questionLabel.adjustsFontSizeToFitWidth = true
 
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
