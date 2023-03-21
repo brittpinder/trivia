@@ -12,4 +12,8 @@ struct K {
         static let horizontalMultiplier: CGFloat = 3.0
         static let verticalMultiplier: CGFloat = 4.0
     }
+
+    struct Colors {
+        static let appBackground: UIColor = .systemBlue
+    }
 }

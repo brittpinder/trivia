@@ -7,13 +7,13 @@
 
 import UIKit
 
-class NextButton: UIButton {
+class CapsuleButton: UIButton {
 
     private let height: CGFloat = 56
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureView()
+    init(title: String, color: UIColor) {
+        super.init(frame: .zero)
+        configure(title: title, color: color)
     }
 
     required init?(coder: NSCoder) {
@@ -22,14 +22,14 @@ class NextButton: UIButton {
 }
 
 //MARK: - UI Configuration
-extension NextButton {
-    private func configureView() {
-        backgroundColor = .systemPurple
+extension CapsuleButton {
+    private func configure(title: String, color: UIColor) {
+        backgroundColor = color
 
         layer.cornerRadius = height / 2
         clipsToBounds = true
 
-        setTitle("Next", for: .normal)
+        setTitle(title, for: .normal)
         setTitleColor(.white, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
 

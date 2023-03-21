@@ -15,7 +15,7 @@ class QuestionViewController: UIViewController {
     var questionLabel = UILabel()
     var answerButtons = [AnswerButton]()
     var answerButtonStackView = UIStackView()
-    var nextButton = NextButton()
+    var nextButton = CapsuleButton(title: "Next", color: .systemPurple)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +25,21 @@ class QuestionViewController: UIViewController {
         configureAnswerButtons()
         configureNextButton()
 
-        currentQuestion = triviaSession.getCurrentQuestion()
-        displayQuestion(currentQuestion)
+        goToNextQuestion()
+    }
+
+    private func goToNextQuestion() {
+        if let question = triviaSession.getNextQuestion() {
+            currentQuestion = question
+            displayQuestion(currentQuestion)
+        } else {
+            goToResults()
+        }
+    }
+
+    private func goToResults() {
+        let resultsViewController = ResultsViewController()
+        navigationController?.pushViewController(resultsViewController, animated: true)
     }
 
     private func displayQuestion(_ question: Question) {
@@ -52,7 +65,8 @@ class QuestionViewController: UIViewController {
 //MARK: - UI Configuration
 extension QuestionViewController {
     private func configureView() {
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = K.Colors.appBackground
+        navigationItem.setHidesBackButton(true, animated: false)
     }
 
     private func configureQuestionLabel() {
@@ -114,7 +128,6 @@ extension QuestionViewController {
     }
 
     @objc private func nextButtonPressed() {
-        currentQuestion = triviaSession.getNextQuestion()
-        displayQuestion(currentQuestion)
+        goToNextQuestion()
     }
 }

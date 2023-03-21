@@ -12,19 +12,15 @@ struct TriviaSession {
                                  Question(question: "What is the capital of Canada?", answers: ["Toronto", "Ontario", "Ottawa", "Vancouver"], correctIndex: 2)!,
                                  Question(question: "Which is a prime number?", answers: ["3", "4", "6", "8"], correctIndex: 0)!]
 
-    private var questionIndex = 0
+    private var questionIndex = -1
 
-    mutating func getNextQuestion() -> Question {
+    mutating func getNextQuestion() -> Question? {
         questionIndex += 1
 
         if questionIndex >= questions.count {
-            questionIndex = 0
+            return nil
         }
 
-        return questions[questionIndex]
-    }
-
-    func getCurrentQuestion() -> Question {
         return questions[questionIndex]
     }
 }
