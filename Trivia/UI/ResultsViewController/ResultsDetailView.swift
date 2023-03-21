@@ -13,8 +13,16 @@ class ResultsDetailView: UIView {
     let percentageLabel = UILabel()
     let fractionLabel = UILabel()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    let percent: Int
+    let numberCorrect: Int
+    let totalQuestions: Int
+
+    init(percent: Int, numberCorrect: Int, totalQuestions: Int) {
+        self.percent = percent
+        self.numberCorrect = numberCorrect
+        self.totalQuestions = totalQuestions
+        super.init(frame: .zero)
+
         configureView()
     }
 
@@ -32,12 +40,12 @@ class ResultsDetailView: UIView {
         stackView.axis = .vertical
         stackView.spacing = 16
 
-        percentageLabel.attributedText = makePercentageAttributed(percentage: 86)
+        percentageLabel.attributedText = makePercentageAttributed(percentage: percent)
         percentageLabel.textColor = .white
         percentageLabel.textAlignment = .center
         percentageLabel.removeVerticalPadding()
 
-        fractionLabel.text = "28 / 30"
+        fractionLabel.text = "\(numberCorrect) \\ \(totalQuestions)"
         fractionLabel.font = UIFont.systemFont(ofSize: 28)
         fractionLabel.textColor = .white
         fractionLabel.textAlignment = .center

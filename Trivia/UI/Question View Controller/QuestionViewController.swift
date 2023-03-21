@@ -10,7 +10,6 @@ import UIKit
 class QuestionViewController: UIViewController {
 
     var triviaSession = TriviaSession()
-    var currentQuestion: Question!
 
     var questionLabel = UILabel()
     var answerButtons = [AnswerButton]()
@@ -30,15 +29,14 @@ class QuestionViewController: UIViewController {
 
     private func goToNextQuestion() {
         if let question = triviaSession.getNextQuestion() {
-            currentQuestion = question
-            displayQuestion(currentQuestion)
+            displayQuestion(question)
         } else {
             goToResults()
         }
     }
 
     private func goToResults() {
-        let resultsViewController = ResultsViewController()
+        let resultsViewController = ResultsViewController(percent: triviaSession.correctPercentage, numberCorrect: triviaSession.totalCorrect, totalQuestions: triviaSession.numberOfQuestions)
         navigationController?.pushViewController(resultsViewController, animated: true)
     }
 
@@ -117,12 +115,17 @@ extension QuestionViewController {
 //MARK: - Actions
 extension QuestionViewController {
     @objc private func answerSelected(_ sender: AnswerButton) {
-        if sender.index == currentQuestion.correctIndex {
+        let result = triviaSession.submitAnswer(answerIndex: sender.index)
+
+        if result.isCorrect {
             sender.setState(.correct)
         } else {
             sender.setState(.incorrect)
-            answerButtons[currentQuestion.correctIndex].setState(.highlightCorrect)
+
+            assert(result.correctIndex >= 0 && result.correctIndex < answerButtons.count, "Correct Index is out of range!")
+            answerButtons[result.correctIndex].setState(.highlightCorrect)
         }
+
         answerButtons.forEach { $0.isEnabled = false }
         nextButton.isHidden = false
     }

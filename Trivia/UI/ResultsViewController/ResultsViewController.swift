@@ -10,8 +10,17 @@ import UIKit
 class ResultsViewController: UIViewController {
 
     let resultsLabel = UILabel()
-    let resultsDetailView = ResultsDetailView()
+    let resultsDetailView: ResultsDetailView
     let playAgainButton = CapsuleButton(title: "Play Again", color: .systemPurple)
+
+    init(percent: Int, numberCorrect: Int, totalQuestions: Int) {
+        resultsDetailView = ResultsDetailView(percent: percent, numberCorrect: numberCorrect, totalQuestions: totalQuestions)
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
