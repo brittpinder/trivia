@@ -8,7 +8,7 @@
 import Foundation
 
 class QuestionUtil {
-    static func getQuestions(from questionData: [QuestionData]) -> [Question] {
+    static func getQuestions(from questionData: [QuestionDto]) -> [Question] {
         var questions = [Question]()
 
         for data in questionData {

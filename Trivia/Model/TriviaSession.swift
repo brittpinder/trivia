@@ -13,7 +13,7 @@ class TriviaSession {
     private var currentQuestion: Question? = nil
     private(set) var totalCorrect = 0
 
-    init?(questionData: [QuestionData]) {
+    init?(questionData: [QuestionDto]) {
         self.questions = QuestionUtil.getQuestions(from: questionData)
 
         if self.questions.isEmpty {

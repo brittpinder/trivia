@@ -9,7 +9,7 @@ import UIKit
 
 class StartViewController: UIViewController {
 
-    private let networkManager = NetworkManager()
+    private let triviaService = TriviaService()
 
     private let startButton = UIButton(type: .system)
 
@@ -53,7 +53,7 @@ extension StartViewController {
     @objc private func startButtonPressed() {
         startButton.isEnabled = false // Eventually we will go to a loading screen and this line can be removed
 
-        networkManager.fetchQuestions(category: 10, amount: 5) { [unowned self] (result) in
+        triviaService.fetchQuestions(category: 10, amount: 5) { [unowned self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let questions):

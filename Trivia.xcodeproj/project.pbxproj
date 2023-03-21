@@ -24,8 +24,10 @@
 		E1F9428029C9E8330082BA11 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9427F29C9E8330082BA11 /* ResultsViewController.swift */; };
 		E1F9428329C9F1290082BA11 /* ResultsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428229C9F1290082BA11 /* ResultsDetailView.swift */; };
 		E1F9428629CA0CA10082BA11 /* UILabel+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428529CA0CA10082BA11 /* UILabel+Util.swift */; };
-		E1F9428929CA1EE90082BA11 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428829CA1EE90082BA11 /* NetworkManager.swift */; };
+		E1F9428929CA1EE90082BA11 /* TriviaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428829CA1EE90082BA11 /* TriviaService.swift */; };
 		E1F9428B29CA25310082BA11 /* QuestionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428A29CA25310082BA11 /* QuestionUtil.swift */; };
+		E1F9428E29CA37CF0082BA11 /* QuestionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428D29CA37CF0082BA11 /* QuestionDto.swift */; };
+		E1F9429029CA382C0082BA11 /* QuestionsResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9428F29CA382C0082BA11 /* QuestionsResponseDto.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +69,10 @@
 		E1F9427F29C9E8330082BA11 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		E1F9428229C9F1290082BA11 /* ResultsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsDetailView.swift; sourceTree = "<group>"; };
 		E1F9428529CA0CA10082BA11 /* UILabel+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Util.swift"; sourceTree = "<group>"; };
-		E1F9428829CA1EE90082BA11 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E1F9428829CA1EE90082BA11 /* TriviaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaService.swift; sourceTree = "<group>"; };
 		E1F9428A29CA25310082BA11 /* QuestionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionUtil.swift; sourceTree = "<group>"; };
+		E1F9428D29CA37CF0082BA11 /* QuestionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDto.swift; sourceTree = "<group>"; };
+		E1F9428F29CA382C0082BA11 /* QuestionsResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsResponseDto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +177,7 @@
 		E1F9427829C8EE2A0082BA11 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E1F9428C29CA37B90082BA11 /* Remote */,
 				E1F9427929C8EE3A0082BA11 /* Question.swift */,
 				E1F9427B29C8EFC60082BA11 /* TriviaSession.swift */,
 			);
@@ -200,9 +205,18 @@
 		E1F9428729CA1ED80082BA11 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				E1F9428829CA1EE90082BA11 /* NetworkManager.swift */,
+				E1F9428829CA1EE90082BA11 /* TriviaService.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		E1F9428C29CA37B90082BA11 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				E1F9428D29CA37CF0082BA11 /* QuestionDto.swift */,
+				E1F9428F29CA382C0082BA11 /* QuestionsResponseDto.swift */,
+			);
+			path = Remote;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,11 +353,13 @@
 				E1F9427C29C8EFC60082BA11 /* TriviaSession.swift in Sources */,
 				E1F9424529C8B5FC0082BA11 /* StartViewController.swift in Sources */,
 				E1F9428B29CA25310082BA11 /* QuestionUtil.swift in Sources */,
-				E1F9428929CA1EE90082BA11 /* NetworkManager.swift in Sources */,
+				E1F9428929CA1EE90082BA11 /* TriviaService.swift in Sources */,
 				E1F9427E29C8F20A0082BA11 /* CapsuleButton.swift in Sources */,
+				E1F9429029CA382C0082BA11 /* QuestionsResponseDto.swift in Sources */,
 				E1F9428629CA0CA10082BA11 /* UILabel+Util.swift in Sources */,
 				E1F9424129C8B5FC0082BA11 /* AppDelegate.swift in Sources */,
 				E1F9428029C9E8330082BA11 /* ResultsViewController.swift in Sources */,
+				E1F9428E29CA37CF0082BA11 /* QuestionDto.swift in Sources */,
 				E1F9427129C8C6560082BA11 /* QuestionViewController.swift in Sources */,
 				E1F9428329C9F1290082BA11 /* ResultsDetailView.swift in Sources */,
 				E1F9424329C8B5FC0082BA11 /* SceneDelegate.swift in Sources */,
