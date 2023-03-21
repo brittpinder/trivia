@@ -108,8 +108,8 @@ extension QuestionViewController {
         } else {
             sender.setState(.incorrect)
             answerButtons[currentQuestion.correctIndex].setState(.highlightCorrect)
-            answerButtons.forEach { $0.isEnabled = false }
         }
+        answerButtons.forEach { $0.isEnabled = false }
         nextButton.isHidden = false
     }
 
