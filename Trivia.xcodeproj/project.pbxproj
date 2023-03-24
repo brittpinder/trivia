@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E1D0AA3429CDC88100B8A8AD /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */; };
 		E1D0AA3A29CDE1C300B8A8AD /* UIViewController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3929CDE1C300B8A8AD /* UIViewController+Util.swift */; };
+		E1D0AA3D29CDEE5800B8A8AD /* CategoriesResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3B29CDEE5800B8A8AD /* CategoriesResponseDto.swift */; };
+		E1D0AA3E29CDEE5800B8A8AD /* CategoryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3C29CDEE5800B8A8AD /* CategoryDto.swift */; };
 		E1F9424129C8B5FC0082BA11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424029C8B5FC0082BA11 /* AppDelegate.swift */; };
 		E1F9424329C8B5FC0082BA11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424229C8B5FC0082BA11 /* SceneDelegate.swift */; };
 		E1F9424529C8B5FC0082BA11 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424429C8B5FC0082BA11 /* StartViewController.swift */; };
@@ -52,6 +54,8 @@
 /* Begin PBXFileReference section */
 		E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		E1D0AA3929CDE1C300B8A8AD /* UIViewController+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Util.swift"; sourceTree = "<group>"; };
+		E1D0AA3B29CDEE5800B8A8AD /* CategoriesResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesResponseDto.swift; sourceTree = "<group>"; };
+		E1D0AA3C29CDEE5800B8A8AD /* CategoryDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDto.swift; sourceTree = "<group>"; };
 		E1F9423D29C8B5FC0082BA11 /* Trivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F9424029C8B5FC0082BA11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1F9424229C8B5FC0082BA11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 		E1F9428C29CA37B90082BA11 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				E1D0AA3B29CDEE5800B8A8AD /* CategoriesResponseDto.swift */,
+				E1D0AA3C29CDEE5800B8A8AD /* CategoryDto.swift */,
 				E1F9428D29CA37CF0082BA11 /* QuestionDto.swift */,
 				E1F9428F29CA382C0082BA11 /* QuestionsResponseDto.swift */,
 			);
@@ -360,6 +366,7 @@
 				E1F9427C29C8EFC60082BA11 /* TriviaSession.swift in Sources */,
 				E1F9424529C8B5FC0082BA11 /* StartViewController.swift in Sources */,
 				E1F9428B29CA25310082BA11 /* QuestionUtil.swift in Sources */,
+				E1D0AA3E29CDEE5800B8A8AD /* CategoryDto.swift in Sources */,
 				E1F9428929CA1EE90082BA11 /* TriviaService.swift in Sources */,
 				E1F9427E29C8F20A0082BA11 /* CapsuleButton.swift in Sources */,
 				E1F9429029CA382C0082BA11 /* QuestionsResponseDto.swift in Sources */,
@@ -373,6 +380,7 @@
 				E1F9424329C8B5FC0082BA11 /* SceneDelegate.swift in Sources */,
 				E1F9427A29C8EE3A0082BA11 /* Question.swift in Sources */,
 				E1F9427729C8D5D60082BA11 /* Constants.swift in Sources */,
+				E1D0AA3D29CDEE5800B8A8AD /* CategoriesResponseDto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

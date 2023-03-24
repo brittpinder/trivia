@@ -20,10 +20,12 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         configureStartButton()
+
+        showLoadingViewController(animated: false, onTransitionComplete: nil)
+        fetchCategories()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        loadingViewController.remove()
         questionViewController?.remove()
         questionViewController = nil
     }
@@ -56,18 +58,61 @@ extension StartViewController {
 //MARK: - Actions
 extension StartViewController {
     @objc private func startButtonPressed() {
-        showLoadingScreen(onTransitionComplete: { [unowned self] finished in self.fetchQuestions()})
+        showLoadingViewController(animated: true, onTransitionComplete: { [unowned self] finished in self.fetchQuestions()})
+    }
+}
+
+//MARK: - Networking
+extension StartViewController {
+    private func fetchCategories() {
+        triviaService.fetchCategories { [unowned self] (error) in
+            DispatchQueue.main.async {
+                if let error {
+                    print(error.rawValue)
+                } else {
+                    print(self.triviaService.categories)
+                    self.hideLoadingViewController()
+                }
+            }
+        }
     }
 
-    private func showLoadingScreen(onTransitionComplete: ((Bool) -> Void)?) {
-        loadingViewController.view.alpha = 0
+    private func fetchQuestions() {
+        triviaService.fetchQuestions(category: 10, amount: 5) { [unowned self] (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let questions):
+                    if let triviaSession = TriviaSession(questionData: questions) {
+                        self.questionViewController = QuestionViewController(triviaSession: triviaSession)
+                        self.hideLoadingViewController()
+                        self.showQuestionViewController()
+                    } else {
+                        // TODO: Handle case where failed to create Trivia Session (perhaps due to corrupt data)
+                    }
+                case .failure(let error):
+                    print(error.rawValue)
+                }
+            }
+        }
+    }
+}
+
+//MARK: - Child View Controllers
+extension StartViewController {
+    private func showLoadingViewController(animated: Bool, onTransitionComplete: ((Bool) -> Void)?) {
         add(loadingViewController)
-        UIView.animate(withDuration: K.Transition.duration,
-                       animations: { self.loadingViewController.view.alpha = 1 },
-                       completion: onTransitionComplete)
+
+        if animated {
+            loadingViewController.view.alpha = 0
+            UIView.animate(withDuration: K.Transition.duration,
+                           animations: { self.loadingViewController.view.alpha = 1 },
+                           completion: onTransitionComplete)
+        } else {
+            loadingViewController.view.alpha = 1
+        }
     }
 
-    private func hideLoadingScreen() {
+    private func hideLoadingViewController() {
         UIView.animate(withDuration: K.Transition.duration,
                        animations: { self.loadingViewController.view.alpha = 0 },
                        completion: { [unowned self] finished in self.loadingViewController.remove() })
@@ -84,24 +129,5 @@ extension StartViewController {
         UIView.animate(withDuration: K.Transition.duration,
                        animations: { questionViewController.view.alpha = 1 },
                        completion: nil)
-    }
-
-    private func fetchQuestions() {
-        triviaService.fetchQuestions(category: 10, amount: 5) { [unowned self] (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let questions):
-                    if let triviaSession = TriviaSession(questionData: questions) {
-                        self.questionViewController = QuestionViewController(triviaSession: triviaSession)
-                        self.hideLoadingScreen()
-                        self.showQuestionViewController()
-                    } else {
-                        // TODO: Handle case where failed to create Trivia Session (perhaps due to corrupt data)
-                    }
-                case .failure(let error):
-                    print(error.rawValue)
-                }
-            }
-        }
     }
 }
