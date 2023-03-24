@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1D0AA3429CDC88100B8A8AD /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */; };
+		E1D0AA3A29CDE1C300B8A8AD /* UIViewController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3929CDE1C300B8A8AD /* UIViewController+Util.swift */; };
 		E1F9424129C8B5FC0082BA11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424029C8B5FC0082BA11 /* AppDelegate.swift */; };
 		E1F9424329C8B5FC0082BA11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424229C8B5FC0082BA11 /* SceneDelegate.swift */; };
 		E1F9424529C8B5FC0082BA11 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424429C8B5FC0082BA11 /* StartViewController.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		E1D0AA3929CDE1C300B8A8AD /* UIViewController+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Util.swift"; sourceTree = "<group>"; };
 		E1F9423D29C8B5FC0082BA11 /* Trivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F9424029C8B5FC0082BA11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1F9424229C8B5FC0082BA11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 		E1F9427229C8C8F40082BA11 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */,
 				E1F9424429C8B5FC0082BA11 /* StartViewController.swift */,
 				E1F9427329C8C9010082BA11 /* Question View Controller */,
 				E1F9428129C9F1090082BA11 /* ResultsViewController */,
@@ -197,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				E1F9428529CA0CA10082BA11 /* UILabel+Util.swift */,
+				E1D0AA3929CDE1C300B8A8AD /* UIViewController+Util.swift */,
 				E1F9428A29CA25310082BA11 /* QuestionUtil.swift */,
 			);
 			path = Util;
@@ -349,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1D0AA3A29CDE1C300B8A8AD /* UIViewController+Util.swift in Sources */,
 				E1F9427529C8C92D0082BA11 /* AnswerButton.swift in Sources */,
 				E1F9427C29C8EFC60082BA11 /* TriviaSession.swift in Sources */,
 				E1F9424529C8B5FC0082BA11 /* StartViewController.swift in Sources */,
@@ -358,6 +365,7 @@
 				E1F9429029CA382C0082BA11 /* QuestionsResponseDto.swift in Sources */,
 				E1F9428629CA0CA10082BA11 /* UILabel+Util.swift in Sources */,
 				E1F9424129C8B5FC0082BA11 /* AppDelegate.swift in Sources */,
+				E1D0AA3429CDC88100B8A8AD /* LoadingViewController.swift in Sources */,
 				E1F9428029C9E8330082BA11 /* ResultsViewController.swift in Sources */,
 				E1F9428E29CA37CF0082BA11 /* QuestionDto.swift in Sources */,
 				E1F9427129C8C6560082BA11 /* QuestionViewController.swift in Sources */,

@@ -16,4 +16,8 @@ struct K {
     struct Colors {
         static let appBackground: UIColor = .systemBlue
     }
+
+    struct Transition {
+        static let duration: CGFloat = 0.4
+    }
 }

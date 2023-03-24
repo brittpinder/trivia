@@ -13,6 +13,9 @@ class StartViewController: UIViewController {
 
     private let startButton = UIButton(type: .system)
 
+    private let loadingViewController = LoadingViewController()
+    private var questionViewController: QuestionViewController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -20,7 +23,9 @@ class StartViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        startButton.isEnabled = true // Remove this once there is a loading screen
+        loadingViewController.remove()
+        questionViewController?.remove()
+        questionViewController = nil
     }
 }
 
@@ -51,15 +56,45 @@ extension StartViewController {
 //MARK: - Actions
 extension StartViewController {
     @objc private func startButtonPressed() {
-        startButton.isEnabled = false // Eventually we will go to a loading screen and this line can be removed
+        showLoadingScreen(onTransitionComplete: { [unowned self] finished in self.fetchQuestions()})
+    }
 
+    private func showLoadingScreen(onTransitionComplete: ((Bool) -> Void)?) {
+        loadingViewController.view.alpha = 0
+        add(loadingViewController)
+        UIView.animate(withDuration: K.Transition.duration,
+                       animations: { self.loadingViewController.view.alpha = 1 },
+                       completion: onTransitionComplete)
+    }
+
+    private func hideLoadingScreen() {
+        UIView.animate(withDuration: K.Transition.duration,
+                       animations: { self.loadingViewController.view.alpha = 0 },
+                       completion: { [unowned self] finished in self.loadingViewController.remove() })
+    }
+
+    private func showQuestionViewController() {
+        guard let questionViewController else {
+            assertionFailure("Trying to show QuestionViewController when it hasn't been initialized!")
+            return
+        }
+
+        questionViewController.view.alpha = 0
+        add(questionViewController)
+        UIView.animate(withDuration: K.Transition.duration,
+                       animations: { questionViewController.view.alpha = 1 },
+                       completion: nil)
+    }
+
+    private func fetchQuestions() {
         triviaService.fetchQuestions(category: 10, amount: 5) { [unowned self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let questions):
                     if let triviaSession = TriviaSession(questionData: questions) {
-                        let questionViewController = QuestionViewController(triviaSession: triviaSession)
-                        self.navigationController?.pushViewController(questionViewController, animated: true)
+                        self.questionViewController = QuestionViewController(triviaSession: triviaSession)
+                        self.hideLoadingScreen()
+                        self.showQuestionViewController()
                     } else {
                         // TODO: Handle case where failed to create Trivia Session (perhaps due to corrupt data)
                     }
