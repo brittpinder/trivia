@@ -23,15 +23,16 @@ class CategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with category: String) {
-        self.label.text = category
+    func configure(with category: String, index: Int) {
+        label.text = category
+        let colorIndex = index % K.Colors.categoryColors.count
+        backgroundColor = K.Colors.categoryColors[colorIndex]
     }
 }
 
 //MARK: - UI Configuration
 extension CategoryCell {
     private func configureView() {
-        backgroundColor = .systemBlue
         layer.cornerRadius = 10
         clipsToBounds = true
     }

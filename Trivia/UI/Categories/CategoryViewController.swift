@@ -78,7 +78,7 @@ extension CategoryViewController: UICollectionViewDataSource {
             assertionFailure("Failed to cast UICollectionViewCell to CategoryCell!")
             return UICollectionViewCell()
         }
-        cell.configure(with: TriviaService.shared.categories[indexPath.row].name)
+        cell.configure(with: TriviaService.shared.categories[indexPath.row].name, index: indexPath.row)
         return cell
     }
 }

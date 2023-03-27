@@ -15,6 +15,7 @@ struct K {
 
     struct Colors {
         static let appBackground: UIColor = .systemBlue
+        static let categoryColors: [UIColor] = [.systemBlue, .systemMint, .systemPurple, .systemPink, .systemOrange]
     }
 
     struct Transition {
