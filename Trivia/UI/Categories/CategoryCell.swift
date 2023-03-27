@@ -11,20 +11,24 @@ class CategoryCell: UICollectionViewCell {
 
     static let identifier = "CategoryCell"
 
+    private let stackView = UIStackView()
+    private var icon = UIImageView()
     private let label = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
         configureView()
-        configureLabel()
+        configureStackView()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with category: String, index: Int) {
-        label.text = category
+    func configure(with category: Category, index: Int) {
+        label.text = category.displayName
+        icon.image = UIImage(systemName: category.iconName, withConfiguration: UIImage.SymbolConfiguration(textStyle: .largeTitle))
+
         let colorIndex = index % K.Colors.categoryColors.count
         backgroundColor = K.Colors.categoryColors[colorIndex]
     }
@@ -37,16 +41,25 @@ extension CategoryCell {
         clipsToBounds = true
     }
 
-    private func configureLabel() {
-        addSubview(label)
+    private func configureStackView() {
+        addSubview(stackView)
+
+        stackView.addArrangedSubview(icon)
+        stackView.addArrangedSubview(label)
+
+        icon.tintColor = .white
 
         label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .center
 
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.alignment = .center
+
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
     }
 }

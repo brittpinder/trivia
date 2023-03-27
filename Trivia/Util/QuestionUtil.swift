@@ -7,7 +7,7 @@
 
 import Foundation
 
-class QuestionUtil {
+struct QuestionUtil {
     static func getQuestions(from questionData: [QuestionDto]) -> [Question] {
         var questions = [Question]()
 
