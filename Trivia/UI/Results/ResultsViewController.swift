@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol ResultsViewControllerDelegate: AnyObject {
+    func playAgainPressed()
+}
+
 class ResultsViewController: UIViewController {
 
     let resultsLabel = UILabel()
     let resultsDetailView: ResultsDetailView
     let playAgainButton = CapsuleButton(title: "Play Again", color: .systemPurple)
+
+    weak var delegate: ResultsViewControllerDelegate?
 
     init(percent: Int, numberCorrect: Int, totalQuestions: Int) {
         resultsDetailView = ResultsDetailView(percent: percent, numberCorrect: numberCorrect, totalQuestions: totalQuestions)
@@ -77,6 +83,6 @@ extension ResultsViewController {
 //MARK: - Actions
 extension ResultsViewController {
     @objc private func playAgainButtonPressed() {
-        navigationController?.popToRootViewController(animated: false)
+        delegate?.playAgainPressed()
     }
 }

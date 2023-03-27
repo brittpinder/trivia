@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol QuestionViewControllerDelegate: AnyObject {
+    func lastQuestionWasAnswered()
+}
+
 class QuestionViewController: UIViewController {
 
     var triviaSession: TriviaSession
+
+    weak var delegate: QuestionViewControllerDelegate?
 
     var questionLabel = UILabel()
     var answerButtons = [AnswerButton]()
@@ -40,13 +46,8 @@ class QuestionViewController: UIViewController {
         if let question = triviaSession.getNextQuestion() {
             displayQuestion(question)
         } else {
-            goToResults()
+            delegate?.lastQuestionWasAnswered()
         }
-    }
-
-    private func goToResults() {
-        let resultsViewController = ResultsViewController(percent: triviaSession.correctPercentage, numberCorrect: triviaSession.totalCorrect, totalQuestions: triviaSession.numberOfQuestions)
-        navigationController?.pushViewController(resultsViewController, animated: true)
     }
 
     private func displayQuestion(_ question: Question) {
