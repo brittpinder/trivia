@@ -13,8 +13,8 @@ protocol CategoryViewControllerDelegate: AnyObject {
 
 class CategoryViewController: UIViewController {
 
-    private let edgeInset: CGFloat = 20
-    private let spaceBetweenItems: CGFloat = 15
+    private let edgeInset: CGFloat = K.Spacing.horizontalMultiplier * 8
+    private let spaceBetweenItems: CGFloat = 16
     private let numColumns = 2
 
     private var collectionView: UICollectionView!

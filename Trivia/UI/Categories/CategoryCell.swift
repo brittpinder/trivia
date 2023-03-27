@@ -39,6 +39,12 @@ extension CategoryCell {
     private func configureView() {
         layer.cornerRadius = 10
         clipsToBounds = true
+
+        layer.masksToBounds = false
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        layer.shadowRadius = 4.0
+        layer.shadowColor = UIColor.black.cgColor
     }
 
     private func configureStackView() {
