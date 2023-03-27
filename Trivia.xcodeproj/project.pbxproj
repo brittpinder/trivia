@@ -11,9 +11,11 @@
 		E1D0AA3A29CDE1C300B8A8AD /* UIViewController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3929CDE1C300B8A8AD /* UIViewController+Util.swift */; };
 		E1D0AA3D29CDEE5800B8A8AD /* CategoriesResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3B29CDEE5800B8A8AD /* CategoriesResponseDto.swift */; };
 		E1D0AA3E29CDEE5800B8A8AD /* CategoryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3C29CDEE5800B8A8AD /* CategoryDto.swift */; };
+		E1D0AA4029CE34B600B8A8AD /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3F29CE34B600B8A8AD /* CategoryCell.swift */; };
+		E1D0AA4229CE3C0100B8A8AD /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA4129CE3C0100B8A8AD /* CategoryViewController.swift */; };
 		E1F9424129C8B5FC0082BA11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424029C8B5FC0082BA11 /* AppDelegate.swift */; };
 		E1F9424329C8B5FC0082BA11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424229C8B5FC0082BA11 /* SceneDelegate.swift */; };
-		E1F9424529C8B5FC0082BA11 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424429C8B5FC0082BA11 /* StartViewController.swift */; };
+		E1F9424529C8B5FC0082BA11 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424429C8B5FC0082BA11 /* MainViewController.swift */; };
 		E1F9424A29C8B5FF0082BA11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1F9424929C8B5FF0082BA11 /* Assets.xcassets */; };
 		E1F9424D29C8B5FF0082BA11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1F9424B29C8B5FF0082BA11 /* LaunchScreen.storyboard */; };
 		E1F9425829C8B6000082BA11 /* TriviaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9425729C8B6000082BA11 /* TriviaTests.swift */; };
@@ -56,10 +58,12 @@
 		E1D0AA3929CDE1C300B8A8AD /* UIViewController+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Util.swift"; sourceTree = "<group>"; };
 		E1D0AA3B29CDEE5800B8A8AD /* CategoriesResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesResponseDto.swift; sourceTree = "<group>"; };
 		E1D0AA3C29CDEE5800B8A8AD /* CategoryDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDto.swift; sourceTree = "<group>"; };
+		E1D0AA3F29CE34B600B8A8AD /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		E1D0AA4129CE3C0100B8A8AD /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		E1F9423D29C8B5FC0082BA11 /* Trivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F9424029C8B5FC0082BA11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1F9424229C8B5FC0082BA11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E1F9424429C8B5FC0082BA11 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		E1F9424429C8B5FC0082BA11 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E1F9424929C8B5FF0082BA11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1F9424C29C8B5FF0082BA11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1F9424E29C8B5FF0082BA11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E1D0AA4329CE3C0700B8A8AD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				E1D0AA4129CE3C0100B8A8AD /* CategoryViewController.swift */,
+				E1D0AA3F29CE34B600B8A8AD /* CategoryCell.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		E1F9423429C8B5FC0082BA11 = {
 			isa = PBXGroup;
 			children = (
@@ -165,22 +178,23 @@
 			isa = PBXGroup;
 			children = (
 				E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */,
-				E1F9424429C8B5FC0082BA11 /* StartViewController.swift */,
-				E1F9427329C8C9010082BA11 /* Question View Controller */,
-				E1F9428129C9F1090082BA11 /* ResultsViewController */,
+				E1F9424429C8B5FC0082BA11 /* MainViewController.swift */,
+				E1D0AA4329CE3C0700B8A8AD /* Categories */,
+				E1F9427329C8C9010082BA11 /* Questions */,
+				E1F9428129C9F1090082BA11 /* Results */,
 				E1F9427629C8D5D60082BA11 /* Constants.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		E1F9427329C8C9010082BA11 /* Question View Controller */ = {
+		E1F9427329C8C9010082BA11 /* Questions */ = {
 			isa = PBXGroup;
 			children = (
 				E1F9427029C8C6560082BA11 /* QuestionViewController.swift */,
 				E1F9427429C8C92D0082BA11 /* AnswerButton.swift */,
 				E1F9427D29C8F20A0082BA11 /* CapsuleButton.swift */,
 			);
-			path = "Question View Controller";
+			path = Questions;
 			sourceTree = "<group>";
 		};
 		E1F9427829C8EE2A0082BA11 /* Model */ = {
@@ -193,13 +207,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		E1F9428129C9F1090082BA11 /* ResultsViewController */ = {
+		E1F9428129C9F1090082BA11 /* Results */ = {
 			isa = PBXGroup;
 			children = (
 				E1F9427F29C9E8330082BA11 /* ResultsViewController.swift */,
 				E1F9428229C9F1290082BA11 /* ResultsDetailView.swift */,
 			);
-			path = ResultsViewController;
+			path = Results;
 			sourceTree = "<group>";
 		};
 		E1F9428429CA0C8D0082BA11 /* Util */ = {
@@ -364,7 +378,7 @@
 				E1D0AA3A29CDE1C300B8A8AD /* UIViewController+Util.swift in Sources */,
 				E1F9427529C8C92D0082BA11 /* AnswerButton.swift in Sources */,
 				E1F9427C29C8EFC60082BA11 /* TriviaSession.swift in Sources */,
-				E1F9424529C8B5FC0082BA11 /* StartViewController.swift in Sources */,
+				E1F9424529C8B5FC0082BA11 /* MainViewController.swift in Sources */,
 				E1F9428B29CA25310082BA11 /* QuestionUtil.swift in Sources */,
 				E1D0AA3E29CDEE5800B8A8AD /* CategoryDto.swift in Sources */,
 				E1F9428929CA1EE90082BA11 /* TriviaService.swift in Sources */,
@@ -378,8 +392,10 @@
 				E1F9427129C8C6560082BA11 /* QuestionViewController.swift in Sources */,
 				E1F9428329C9F1290082BA11 /* ResultsDetailView.swift in Sources */,
 				E1F9424329C8B5FC0082BA11 /* SceneDelegate.swift in Sources */,
+				E1D0AA4029CE34B600B8A8AD /* CategoryCell.swift in Sources */,
 				E1F9427A29C8EE3A0082BA11 /* Question.swift in Sources */,
 				E1F9427729C8D5D60082BA11 /* Constants.swift in Sources */,
+				E1D0AA4229CE3C0100B8A8AD /* CategoryViewController.swift in Sources */,
 				E1D0AA3D29CDEE5800B8A8AD /* CategoriesResponseDto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

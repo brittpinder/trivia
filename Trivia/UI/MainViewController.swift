@@ -7,85 +7,61 @@
 
 import UIKit
 
-class StartViewController: UIViewController {
-
-    private let triviaService = TriviaService()
-
-    private let startButton = UIButton(type: .system)
+class MainViewController: UIViewController {
 
     private let loadingViewController = LoadingViewController()
+    private let categoryViewController = CategoryViewController()
     private var questionViewController: QuestionViewController?
+
+    private var currentViewController: UIViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        configureStartButton()
 
-        showLoadingViewController(animated: false, onTransitionComplete: nil)
         fetchCategories()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        questionViewController?.remove()
-        questionViewController = nil
+        showViewController(animated: false, viewController: categoryViewController)
     }
 }
 
 //MARK: - UI Configuration
 
-extension StartViewController {
+extension MainViewController {
     private func configureView() {
         view.backgroundColor = .white
-    }
 
-    private func configureStartButton() {
-        view.addSubview(startButton)
-
-        startButton.setTitle("Start", for: [])
-        startButton.configuration = .filled()
-        startButton.addTarget(self, action: #selector(startButtonPressed), for: .primaryActionTriggered)
-
-        startButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            startButton.widthAnchor.constraint(equalToConstant: 200),
-            startButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-}
-
-//MARK: - Actions
-extension StartViewController {
-    @objc private func startButtonPressed() {
-        showLoadingViewController(animated: true, onTransitionComplete: { [unowned self] finished in self.fetchQuestions()})
+        categoryViewController.delegate = self
     }
 }
 
 //MARK: - Networking
-extension StartViewController {
+extension MainViewController {
     private func fetchCategories() {
-        triviaService.fetchCategories { [unowned self] (error) in
+        TriviaService.shared.fetchCategories { [unowned self] (error) in
             DispatchQueue.main.async {
                 if let error {
                     print(error.rawValue)
                 } else {
-                    print(self.triviaService.categories)
+                    self.categoryViewController.reloadData()
+                    self.showViewController(animated: false, viewController: categoryViewController)
                     self.hideLoadingViewController()
                 }
             }
         }
     }
 
-    private func fetchQuestions() {
-        triviaService.fetchQuestions(category: 10, amount: 5) { [unowned self] (result) in
+    private func fetchQuestions(category: Int) {
+        TriviaService.shared.fetchQuestions(category: category, amount: 5) { [unowned self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let questions):
                     if let triviaSession = TriviaSession(questionData: questions) {
                         self.questionViewController = QuestionViewController(triviaSession: triviaSession)
+                        self.showViewController(animated: true, viewController: questionViewController!)
                         self.hideLoadingViewController()
-                        self.showQuestionViewController()
                     } else {
                         // TODO: Handle case where failed to create Trivia Session (perhaps due to corrupt data)
                     }
@@ -98,7 +74,7 @@ extension StartViewController {
 }
 
 //MARK: - Child View Controllers
-extension StartViewController {
+extension MainViewController {
     private func showLoadingViewController(animated: Bool, onTransitionComplete: ((Bool) -> Void)?) {
         add(loadingViewController)
 
@@ -118,16 +94,30 @@ extension StartViewController {
                        completion: { [unowned self] finished in self.loadingViewController.remove() })
     }
 
-    private func showQuestionViewController() {
-        guard let questionViewController else {
-            assertionFailure("Trying to show QuestionViewController when it hasn't been initialized!")
-            return
+    private func showViewController(animated: Bool, viewController: UIViewController) {
+        if let currentViewController {
+            currentViewController.remove()
         }
 
-        questionViewController.view.alpha = 0
-        add(questionViewController)
-        UIView.animate(withDuration: K.Transition.duration,
-                       animations: { questionViewController.view.alpha = 1 },
-                       completion: nil)
+        add(viewController)
+        currentViewController = viewController
+
+        if animated {
+            viewController.view.alpha = 0
+            UIView.animate(withDuration: K.Transition.duration,
+                           animations: { viewController.view.alpha = 1 },
+                           completion: nil)
+        } else {
+            viewController.view.alpha = 1
+        }
+    }
+}
+
+//MARK: - CategoryViewControllerDelegate
+extension MainViewController: CategoryViewControllerDelegate {
+    func selectedCategory(id: Int) {
+        showLoadingViewController(animated: true, onTransitionComplete: { [unowned self] finished in
+            self.fetchQuestions(category: id)
+        })
     }
 }

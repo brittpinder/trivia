@@ -8,6 +8,7 @@
 import Foundation
 
 class TriviaService {
+    static let shared = TriviaService()
 
     enum NetworkError: String, Error {
         case invalidURL
@@ -18,10 +19,10 @@ class TriviaService {
     let categoryURL = "https://opentdb.com/api_category.php"
     let questionURL = "https://opentdb.com/api.php?"
 
-    var categories = [String: Int]()
+    private(set) var categories = [CategoryDto]()
 
     func getCategoryId(name: String) -> Int? {
-        return categories[name] ?? nil
+        return categories.first(where: {$0.name == name})?.id ?? nil
     }
 
     func fetchCategories(completed: @escaping (NetworkError?) -> Void) {
@@ -38,9 +39,7 @@ class TriviaService {
 
             do {
                 let response = try JSONDecoder().decode(CategoriesResponseDto.self, from: data)
-                for category in response.triviaCategories {
-                    self.categories[category.name] = category.id
-                }
+                self.categories = response.triviaCategories
                 completed(nil)
             } catch {
                 completed(.decodingError)
