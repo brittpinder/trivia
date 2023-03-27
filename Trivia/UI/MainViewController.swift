@@ -134,7 +134,7 @@ extension MainViewController: QuestionViewControllerDelegate {
             assertionFailure("triviaSession should not be nil!")
             return
         }
-        resultsViewController = ResultsViewController(percent: triviaSession.correctPercentage, numberCorrect: triviaSession.totalCorrect, totalQuestions: triviaSession.numberOfQuestions)
+        resultsViewController = ResultsViewController(triviaSession: triviaSession)
         resultsViewController!.delegate = self
         showViewController(animated: false, viewController: resultsViewController!)
     }

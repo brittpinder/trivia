@@ -19,8 +19,8 @@ class ResultsViewController: UIViewController {
 
     weak var delegate: ResultsViewControllerDelegate?
 
-    init(percent: Int, numberCorrect: Int, totalQuestions: Int) {
-        resultsDetailView = ResultsDetailView(percent: percent, numberCorrect: numberCorrect, totalQuestions: totalQuestions)
+    init(triviaSession: TriviaSession) {
+        resultsDetailView = ResultsDetailView(percent: triviaSession.correctPercentage, numberCorrect: triviaSession.totalCorrect, totalQuestions: triviaSession.numberOfQuestions)
         super.init(nibName: nil, bundle: nil)
     }
 
