@@ -8,7 +8,6 @@
 import Foundation
 
 class TriviaService {
-    static let shared = TriviaService()
 
     enum NetworkError: String, Error {
         case invalidURL

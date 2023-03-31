@@ -21,6 +21,17 @@ class CategoryViewController: UIViewController {
 
     weak var delegate: CategoryViewControllerDelegate?
 
+    private var triviaService: TriviaService
+
+    init(triviaService: TriviaService) {
+        self.triviaService = triviaService
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,14 +74,14 @@ extension CategoryViewController {
 extension CategoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let selectedCategoryId = TriviaService.shared.categories[indexPath.row].id
+        let selectedCategoryId = triviaService.categories[indexPath.row].id
         delegate?.selectedCategory(id: selectedCategoryId)
     }
 }
 
 extension CategoryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return TriviaService.shared.categories.count
+        return triviaService.categories.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,7 +90,7 @@ extension CategoryViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        let category = CategoryUtil.getCategory(for: TriviaService.shared.categories[indexPath.row].name)
+        let category = CategoryUtil.getCategory(for: triviaService.categories[indexPath.row].name)
         cell.configure(with: category, index: indexPath.row)
         return cell
     }
