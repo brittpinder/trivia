@@ -20,6 +20,14 @@ class MainViewController: UIViewController {
     private var triviaService = TriviaService()
     private var triviaSession: TriviaSession?
 
+    lazy var errorAlert: UIAlertController = {
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [unowned self] (action) in
+            self.hideLoadingViewController(animated: false)
+        }))
+        return alert
+    }()
+
     init() {
         categoryViewController = CategoryViewController(triviaService: triviaService)
         super.init(nibName: nil, bundle: nil)
@@ -73,15 +81,21 @@ extension MainViewController {
                         self.questionViewController = QuestionViewController(triviaSession: session)
                         self.questionViewController!.delegate = self
                         self.showViewController(animated: true, viewController: self.questionViewController!)
-                        self.hideLoadingViewController()
+                        self.hideLoadingViewController(animated: true)
                     } else {
-                        // TODO: Handle case where failed to create Trivia Session (perhaps due to corrupt data)
+                        self.displayError(title: "Error", message: "Failed to retrieve trivia questions. Please try again.")
                     }
-                case .failure(let error):
-                    print(error.rawValue)
+                case .failure:
+                    self.displayError(title: "Network Error", message: "There was a problem retrieving trivia questions. Please check your internet connection and try again.")
                 }
             }
         }
+    }
+
+    private func displayError(title: String, message: String) {
+        errorAlert.title = title
+        errorAlert.message = message
+        present(errorAlert, animated: true, completion: nil)
     }
 }
 
@@ -100,10 +114,14 @@ extension MainViewController {
         }
     }
 
-    private func hideLoadingViewController() {
-        UIView.animate(withDuration: K.Transition.duration,
-                       animations: { self.loadingViewController.view.alpha = 0 },
-                       completion: { [unowned self] finished in self.loadingViewController.remove() })
+    private func hideLoadingViewController(animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: K.Transition.duration,
+                           animations: { self.loadingViewController.view.alpha = 0 },
+                           completion: { [unowned self] finished in self.loadingViewController.remove() })
+        } else {
+            self.loadingViewController.remove()
+        }
     }
 
     private func showViewController(animated: Bool, viewController: UIViewController) {
