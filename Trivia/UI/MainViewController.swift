@@ -36,7 +36,6 @@ class MainViewController: UIViewController {
 }
 
 //MARK: - UI Configuration
-
 extension MainViewController {
     private func configureView() {
         view.backgroundColor = .white
@@ -55,7 +54,6 @@ extension MainViewController {
                 } else {
                     self.categoryViewController.reloadData()
                     self.showViewController(animated: false, viewController: self.categoryViewController)
-                    self.hideLoadingViewController()
                 }
             }
         }
