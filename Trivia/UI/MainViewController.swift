@@ -10,6 +10,7 @@ import UIKit
 class MainViewController: UIViewController {
 
     private let loadingViewController = LoadingViewController()
+    private let networkErrorViewController = NetworkErrorViewController()
     private let categoryViewController: CategoryViewController
     private var questionViewController: QuestionViewController?
     private var resultsViewController: ResultsViewController?
@@ -40,6 +41,7 @@ extension MainViewController {
     private func configureView() {
         view.backgroundColor = .white
 
+        networkErrorViewController.delegate = self
         categoryViewController.delegate = self
     }
 }
@@ -47,10 +49,12 @@ extension MainViewController {
 //MARK: - Networking
 extension MainViewController {
     private func fetchCategories() {
+        // TODO: Show skeleton screen
         triviaService.fetchCategories { [unowned self] (error) in
             DispatchQueue.main.async {
                 if let error {
                     print(error.rawValue)
+                    self.showViewController(animated: false, viewController: self.networkErrorViewController)
                 } else {
                     self.categoryViewController.reloadData()
                     self.showViewController(animated: false, viewController: self.categoryViewController)
@@ -118,6 +122,13 @@ extension MainViewController {
         } else {
             viewController.view.alpha = 1
         }
+    }
+}
+
+//MARK: - NetworkErrorViewControllerDelegate
+extension MainViewController: NetworkErrorViewControllerDelegate {
+    func tryFetchingCategoriesAgain() {
+        fetchCategories()
     }
 }
 

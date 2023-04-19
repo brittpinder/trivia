@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E17D163929D1E948001CF333 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163829D1E948001CF333 /* Category.swift */; };
 		E17D163B29D1EC8E001CF333 /* CategoryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */; };
+		E1C6BF4529F027240002A768 /* NetworkErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C6BF4429F027240002A768 /* NetworkErrorViewController.swift */; };
 		E1D0AA3429CDC88100B8A8AD /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */; };
 		E1D0AA3A29CDE1C300B8A8AD /* UIViewController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3929CDE1C300B8A8AD /* UIViewController+Util.swift */; };
 		E1D0AA3D29CDEE5800B8A8AD /* CategoriesResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3B29CDEE5800B8A8AD /* CategoriesResponseDto.swift */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		E17D163829D1E948001CF333 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUtil.swift; sourceTree = "<group>"; };
+		E1C6BF4429F027240002A768 /* NetworkErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorViewController.swift; sourceTree = "<group>"; };
 		E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		E1D0AA3929CDE1C300B8A8AD /* UIViewController+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Util.swift"; sourceTree = "<group>"; };
 		E1D0AA3B29CDEE5800B8A8AD /* CategoriesResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesResponseDto.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				E1F9427329C8C9010082BA11 /* Questions */,
 				E1F9428129C9F1090082BA11 /* Results */,
 				E1F9427629C8D5D60082BA11 /* Constants.swift */,
+				E1C6BF4429F027240002A768 /* NetworkErrorViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				E17D163929D1E948001CF333 /* Category.swift in Sources */,
 				E1D0AA4029CE34B600B8A8AD /* CategoryCell.swift in Sources */,
 				E1F9427A29C8EE3A0082BA11 /* Question.swift in Sources */,
+				E1C6BF4529F027240002A768 /* NetworkErrorViewController.swift in Sources */,
 				E1F9427729C8D5D60082BA11 /* Constants.swift in Sources */,
 				E1D0AA4229CE3C0100B8A8AD /* CategoryViewController.swift in Sources */,
 				E1D0AA3D29CDEE5800B8A8AD /* CategoriesResponseDto.swift in Sources */,
