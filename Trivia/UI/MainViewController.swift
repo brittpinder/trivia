@@ -31,12 +31,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-
         fetchCategories()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        showViewController(animated: false, viewController: categoryViewController)
     }
 }
 
