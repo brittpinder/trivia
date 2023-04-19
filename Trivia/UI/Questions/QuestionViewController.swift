@@ -118,7 +118,7 @@ extension QuestionViewController {
         NSLayoutConstraint.activate([
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nextButton.topAnchor.constraint(equalToSystemSpacingBelow: answerButtonStackView.bottomAnchor, multiplier: K.Spacing.verticalMultiplier),
-            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: nextButton.bottomAnchor, multiplier: K.Spacing.verticalMultiplier),
+            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalToSystemSpacingBelow: nextButton.bottomAnchor, multiplier: K.Spacing.verticalMultiplier)
         ])
     }
 }
@@ -126,6 +126,9 @@ extension QuestionViewController {
 //MARK: - Actions
 extension QuestionViewController {
     @objc private func answerSelected(_ sender: AnswerButton) {
+        answerButtons.forEach { $0.isEnabled = false }
+        nextButton.isHidden = false
+
         let result = triviaSession.submitAnswer(answerIndex: sender.index)
 
         if result.isCorrect {
@@ -133,12 +136,12 @@ extension QuestionViewController {
         } else {
             sender.setState(.incorrect)
 
-            assert(result.correctIndex >= 0 && result.correctIndex < answerButtons.count, "Correct Index is out of range!")
+            guard result.correctIndex >= 0 && result.correctIndex < answerButtons.count else {
+                assertionFailure("Correct index is out of range!")
+                return
+            }
             answerButtons[result.correctIndex].setState(.highlightCorrect)
         }
-
-        answerButtons.forEach { $0.isEnabled = false }
-        nextButton.isHidden = false
     }
 
     @objc private func nextButtonPressed() {
