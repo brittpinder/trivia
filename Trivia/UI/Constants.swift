@@ -21,4 +21,8 @@ struct K {
     struct Transition {
         static let duration: CGFloat = 0.4
     }
+
+    struct Settings {
+        static let numQuestions: Int = 5
+    }
 }

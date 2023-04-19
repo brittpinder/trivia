@@ -62,7 +62,7 @@ extension MainViewController {
     }
 
     private func fetchQuestions(category: Int) {
-        triviaService.fetchQuestions(category: category, amount: 5) { [unowned self] (result) in
+        triviaService.fetchQuestions(category: category, amount: K.Settings.numQuestions) { [unowned self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let questions):
