@@ -44,11 +44,12 @@ extension AnswerButton {
         setTitle(answer, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel?.adjustsFontSizeToFitWidth = true
-        titleLabel?.numberOfLines = 0
+        titleLabel?.numberOfLines = -1
         titleLabel?.textAlignment = .center
 
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: 64).isActive = true
+        titleLabel?.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
 
         addSubview(icon)
 
