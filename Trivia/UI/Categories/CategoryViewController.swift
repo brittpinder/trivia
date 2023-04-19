@@ -73,7 +73,6 @@ extension CategoryViewController {
 //MARK: - UICollectionView
 extension CategoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
         let selectedCategoryId = triviaService.categories[indexPath.row].id
         delegate?.selectedCategory(id: selectedCategoryId)
     }
