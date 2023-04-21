@@ -20,7 +20,7 @@ class LoadingViewController: UIViewController {
 //MARK: - UI Configuration
 extension LoadingViewController {
     private func configureView() {
-        view.backgroundColor = K.Colors.appBackground
+        view.backgroundColor = K.Colors.background
 
         view.addSubview(spinner)
 

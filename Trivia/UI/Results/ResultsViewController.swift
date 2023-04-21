@@ -15,7 +15,7 @@ class ResultsViewController: UIViewController {
 
     let resultsLabel = UILabel()
     let resultsDetailView: ResultsDetailView
-    let playAgainButton = CapsuleButton(title: "Play Again", color: .systemPurple)
+    let playAgainButton = CapsuleButton(title: "Play Again", color: K.Colors.accent)
 
     weak var delegate: ResultsViewControllerDelegate?
 
@@ -37,7 +37,7 @@ class ResultsViewController: UIViewController {
 //MARK: - UI Configuration
 extension ResultsViewController {
     private func configureView() {
-        view.backgroundColor = K.Colors.appBackground
+        view.backgroundColor = K.Colors.background
         navigationItem.setHidesBackButton(true, animated: false)
 
         view.addSubviews(resultsLabel, resultsDetailView, playAgainButton)

@@ -71,20 +71,20 @@ extension AnswerButton {
         switch state {
         case .normal:
             backgroundColor = .white
-            setTitleColor(.systemBlue, for: .normal)
+            setTitleColor(K.Colors.background, for: .normal)
             icon.isHidden = true
         case .correct:
-            backgroundColor = .systemGreen
+            backgroundColor = K.Colors.correctAnswer
             setTitleColor(.white, for: .normal)
             icon.image = UIImage(systemName: "checkmark")
             icon.isHidden = false
         case .incorrect:
-            backgroundColor = .systemRed
+            backgroundColor = K.Colors.incorrectAnswer
             setTitleColor(.white, for: .normal)
             icon.image = UIImage(systemName: "xmark")
             icon.isHidden = false
         case .highlightCorrect:
-            backgroundColor = .systemGreen
+            backgroundColor = K.Colors.correctAnswer
             setTitleColor(.white, for: .normal)
             icon.isHidden = true
         }

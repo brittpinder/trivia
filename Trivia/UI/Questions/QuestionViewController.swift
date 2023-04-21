@@ -20,7 +20,7 @@ class QuestionViewController: UIViewController {
     var questionLabel = UILabel()
     var answerButtons = [AnswerButton]()
     var answerButtonStackView = UIStackView()
-    var nextButton = CapsuleButton(title: "Next", color: .systemPurple)
+    var nextButton = CapsuleButton(title: "Next", color: K.Colors.accent)
 
     init(triviaSession: TriviaSession) {
         self.triviaSession = triviaSession
@@ -68,7 +68,7 @@ class QuestionViewController: UIViewController {
 //MARK: - UI Configuration
 extension QuestionViewController {
     private func configureView() {
-        view.backgroundColor = K.Colors.appBackground
+        view.backgroundColor = K.Colors.background
         navigationItem.setHidesBackButton(true, animated: false)
 
         view.addSubviews(questionLabel, answerButtonStackView, nextButton)
