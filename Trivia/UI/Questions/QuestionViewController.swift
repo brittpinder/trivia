@@ -14,9 +14,12 @@ protocol QuestionViewControllerDelegate: AnyObject {
 class QuestionViewController: UIViewController {
 
     var triviaSession: TriviaSession
+    var totalQuestions: Int
+    var questionIndex = 0
 
     weak var delegate: QuestionViewControllerDelegate?
 
+    var progressLabel = UILabel()
     var questionLabel = UILabel()
     var answerButtons = [AnswerButton]()
     var answerButtonStackView = UIStackView()
@@ -24,6 +27,7 @@ class QuestionViewController: UIViewController {
 
     init(triviaSession: TriviaSession) {
         self.triviaSession = triviaSession
+        totalQuestions = triviaSession.numberOfQuestions
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -39,6 +43,7 @@ class QuestionViewController: UIViewController {
 
     private func goToNextQuestion() {
         if let question = triviaSession.getNextQuestion() {
+            questionIndex += 1
             displayQuestion(question)
         } else {
             delegate?.lastQuestionWasAnswered()
@@ -46,6 +51,7 @@ class QuestionViewController: UIViewController {
     }
 
     private func displayQuestion(_ question: Question) {
+        progressLabel.text = "Question \(questionIndex) of \(totalQuestions)"
         questionLabel.text = question.question
 
         answerButtons.removeAll(keepingCapacity: true)
@@ -71,11 +77,23 @@ extension QuestionViewController {
         view.backgroundColor = K.Colors.background
         navigationItem.setHidesBackButton(true, animated: false)
 
-        view.addSubviews(questionLabel, answerButtonStackView, nextButton)
+        view.addSubviews(progressLabel, questionLabel, answerButtonStackView, nextButton)
 
+        configureProgressLabel()
         configureQuestionLabel()
         configureAnswerButtons()
         configureNextButton()
+    }
+
+    private func configureProgressLabel() {
+        progressLabel.textColor = .white
+        progressLabel.font = .systemFont(ofSize: 18, weight: .light)
+
+        progressLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progressLabel.leadingAnchor.constraint(equalTo: questionLabel.leadingAnchor),
+            progressLabel.bottomAnchor.constraint(equalTo: questionLabel.topAnchor, constant: -8)
+        ])
     }
 
     private func configureQuestionLabel() {
