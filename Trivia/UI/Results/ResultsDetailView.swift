@@ -37,29 +37,38 @@ class ResultsDetailView: UIView {
         stackView.addArrangedSubview(percentageLabel)
         stackView.addArrangedSubview(fractionLabel)
 
+        configureStackView()
+        configurePercentageLabel()
+        configureFractionLabel()
+    }
+
+    private func configureStackView() {
         stackView.axis = .vertical
         stackView.spacing = 16
-
-        percentageLabel.attributedText = makePercentageAttributed(percentage: percent)
-        percentageLabel.textColor = .white
-        percentageLabel.textAlignment = .center
-        percentageLabel.removeVerticalPadding()
-
-        fractionLabel.text = "\(numberCorrect) \\ \(totalQuestions)"
-        fractionLabel.font = UIFont.systemFont(ofSize: 28)
-        fractionLabel.textColor = .white
-        fractionLabel.textAlignment = .center
-        fractionLabel.removeVerticalPadding()
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
-
     }
 
-    func makePercentageAttributed(percentage: Int) -> NSMutableAttributedString {
+    private func configurePercentageLabel() {
+        percentageLabel.attributedText = makePercentageAttributed(percentage: percent)
+        percentageLabel.textColor = .white
+        percentageLabel.textAlignment = .center
+        percentageLabel.removeVerticalPadding()
+    }
+
+    private func configureFractionLabel() {
+        fractionLabel.text = "\(numberCorrect) \\ \(totalQuestions)"
+        fractionLabel.font = UIFont.systemFont(ofSize: 28)
+        fractionLabel.textColor = .white
+        fractionLabel.textAlignment = .center
+        fractionLabel.removeVerticalPadding()
+    }
+
+    private func makePercentageAttributed(percentage: Int) -> NSMutableAttributedString {
         let numberFont = UIFont.boldSystemFont(ofSize: 96)
         let percentFont = UIFont.systemFont(ofSize: 28)
 

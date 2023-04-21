@@ -33,12 +33,7 @@ class QuestionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureView()
-        configureQuestionLabel()
-        configureAnswerButtons()
-        configureNextButton()
-
         goToNextQuestion()
     }
 
@@ -75,11 +70,15 @@ extension QuestionViewController {
     private func configureView() {
         view.backgroundColor = K.Colors.appBackground
         navigationItem.setHidesBackButton(true, animated: false)
+
+        view.addSubviews(questionLabel, answerButtonStackView, nextButton)
+
+        configureQuestionLabel()
+        configureAnswerButtons()
+        configureNextButton()
     }
 
     private func configureQuestionLabel() {
-        view.addSubview(questionLabel)
-
         questionLabel.textColor = .white
         questionLabel.font = UIFont.boldSystemFont(ofSize: 26)
         questionLabel.numberOfLines = -1
@@ -95,8 +94,6 @@ extension QuestionViewController {
     }
 
     private func configureAnswerButtons() {
-        view.addSubview(answerButtonStackView)
-
         answerButtonStackView.axis = .vertical
         answerButtonStackView.distribution = .fill
         answerButtonStackView.spacing = 16
@@ -111,8 +108,6 @@ extension QuestionViewController {
     }
 
     private func configureNextButton() {
-        view.addSubview(nextButton)
-
         nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .primaryActionTriggered)
 
         NSLayoutConstraint.activate([

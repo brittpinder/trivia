@@ -18,7 +18,6 @@ class CategoryCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         configureView()
-        configureStackView()
     }
 
     required init?(coder: NSCoder) {
@@ -45,14 +44,15 @@ extension CategoryCell {
         layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         layer.shadowRadius = 4.0
         layer.shadowColor = UIColor.black.cgColor
-    }
 
-    private func configureStackView() {
         addSubview(stackView)
-
         stackView.addArrangedSubview(icon)
         stackView.addArrangedSubview(label)
 
+        configureStackView()
+    }
+
+    private func configureStackView() {
         icon.tintColor = .white
 
         label.textColor = .white

@@ -27,11 +27,19 @@ class NetworkErrorViewController: UIViewController {
 
 //MARK: - UI Configuration
 extension NetworkErrorViewController {
-    func configureView() {
+    private func configureView() {
         view.backgroundColor = .white
 
         view.addSubview(stackView)
+        stackView.addArrangedSubview(errorLabel)
+        stackView.addArrangedSubview(tryAgainButton)
 
+        configureStackView()
+        configureErrorLabel()
+        configureTryAgainButton()
+    }
+
+    private func configureStackView() {
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.alignment = .center
@@ -43,14 +51,15 @@ extension NetworkErrorViewController {
             stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: K.Spacing.horizontalMultiplier),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: K.Spacing.horizontalMultiplier)
         ])
+    }
 
-        stackView.addArrangedSubview(errorLabel)
-        stackView.addArrangedSubview(tryAgainButton)
-
+    private func configureErrorLabel() {
         errorLabel.text = "Something went wrong. Please check your internet connection and try again."
         errorLabel.numberOfLines = -1
         errorLabel.textAlignment = .center
+    }
 
+    private func configureTryAgainButton() {
         tryAgainButton.setTitle("Try Again", for: .normal)
         tryAgainButton.tintColor = .white
         tryAgainButton.backgroundColor = .systemBlue

@@ -34,9 +34,7 @@ class CategoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureView()
-        configureCollectionView()
     }
 
     func reloadData() {
@@ -48,6 +46,7 @@ class CategoryViewController: UIViewController {
 extension CategoryViewController {
     private func configureView() {
         view.backgroundColor = .white
+        configureCollectionView()
     }
 
     private func configureCollectionView() {

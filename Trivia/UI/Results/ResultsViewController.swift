@@ -31,9 +31,6 @@ class ResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        configureResultsLabel()
-        configureResultsDetailView()
-        configurePlayAgainButton()
     }
 }
 
@@ -42,11 +39,15 @@ extension ResultsViewController {
     private func configureView() {
         view.backgroundColor = K.Colors.appBackground
         navigationItem.setHidesBackButton(true, animated: false)
+
+        view.addSubviews(resultsLabel, resultsDetailView, playAgainButton)
+
+        configureResultsLabel()
+        configureResultsDetailView()
+        configurePlayAgainButton()
     }
 
     private func configureResultsLabel() {
-        view.addSubview(resultsLabel)
-
         resultsLabel.text = "Results"
         resultsLabel.font = UIFont.boldSystemFont(ofSize: 32)
         resultsLabel.textColor = .white
@@ -60,8 +61,6 @@ extension ResultsViewController {
     }
 
     private func configureResultsDetailView() {
-        view.addSubview(resultsDetailView)
-
         NSLayoutConstraint.activate([
             resultsDetailView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             resultsDetailView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -69,8 +68,6 @@ extension ResultsViewController {
     }
 
     private func configurePlayAgainButton() {
-        view.addSubview(playAgainButton)
-
         playAgainButton.addTarget(self, action: #selector(playAgainButtonPressed), for: .primaryActionTriggered)
 
         NSLayoutConstraint.activate([
