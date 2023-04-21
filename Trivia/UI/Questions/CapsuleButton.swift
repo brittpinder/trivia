@@ -29,6 +29,12 @@ extension CapsuleButton {
         layer.cornerRadius = height / 2
         clipsToBounds = true
 
+        layer.masksToBounds = false
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+        layer.shadowRadius = 8.0
+        layer.shadowColor = UIColor.black.cgColor
+
         setTitle(title, for: .normal)
         setTitleColor(.white, for: .normal)
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
