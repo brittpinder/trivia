@@ -74,19 +74,28 @@ extension AnswerButton {
             setTitleColor(K.Colors.background, for: .normal)
             icon.isHidden = true
         case .correct:
-            backgroundColor = K.Colors.correctAnswer
             setTitleColor(.white, for: .normal)
             icon.image = UIImage(systemName: "checkmark")
             icon.isHidden = false
+
+            UIViewPropertyAnimator(duration: K.Animations.answerColorChangeDuration, curve: .easeInOut) {
+                self.backgroundColor = K.Colors.correctAnswer
+            }.startAnimation()
         case .incorrect:
-            backgroundColor = K.Colors.incorrectAnswer
             setTitleColor(.white, for: .normal)
             icon.image = UIImage(systemName: "xmark")
             icon.isHidden = false
+
+            UIViewPropertyAnimator(duration: K.Animations.answerColorChangeDuration, curve: .easeInOut) {
+                self.backgroundColor = K.Colors.incorrectAnswer
+            }.startAnimation()
         case .highlightCorrect:
-            backgroundColor = K.Colors.correctAnswer
             setTitleColor(.white, for: .normal)
             icon.isHidden = true
+
+            UIViewPropertyAnimator(duration: K.Animations.answerColorChangeDuration, curve: .easeInOut) {
+                self.backgroundColor = K.Colors.correctAnswer
+            }.startAnimation()
         }
     }
 }

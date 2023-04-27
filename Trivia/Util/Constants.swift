@@ -28,6 +28,7 @@ struct K {
     struct Animations {
         static let answerSlideDuration: CGFloat = 0.6
         static let answerSlideDelay: CGFloat = 0.12
+        static let answerColorChangeDuration: CGFloat = 0.15
     }
 
     struct Settings {
