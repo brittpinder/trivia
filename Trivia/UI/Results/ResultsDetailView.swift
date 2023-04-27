@@ -34,8 +34,7 @@ class ResultsDetailView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(stackView)
-        stackView.addArrangedSubview(percentageLabel)
-        stackView.addArrangedSubview(fractionLabel)
+        stackView.addArrangedSubviews(percentageLabel, fractionLabel)
 
         configureStackView()
         configurePercentageLabel()

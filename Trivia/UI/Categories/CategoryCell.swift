@@ -46,8 +46,7 @@ extension CategoryCell {
         layer.shadowColor = UIColor.black.cgColor
 
         addSubview(stackView)
-        stackView.addArrangedSubview(icon)
-        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubviews(icon, label)
 
         configureStackView()
     }

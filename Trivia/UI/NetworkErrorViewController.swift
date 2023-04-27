@@ -31,8 +31,7 @@ extension NetworkErrorViewController {
         view.backgroundColor = .white
 
         view.addSubview(stackView)
-        stackView.addArrangedSubview(errorLabel)
-        stackView.addArrangedSubview(tryAgainButton)
+        stackView.addArrangedSubviews(errorLabel, tryAgainButton)
 
         configureStackView()
         configureErrorLabel()

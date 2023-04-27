@@ -10,6 +10,7 @@
 		E17D163929D1E948001CF333 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163829D1E948001CF333 /* Category.swift */; };
 		E17D163B29D1EC8E001CF333 /* CategoryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */; };
 		E1A8FE9329FA9F3200FE9546 /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8FE9229FA9F3200FE9546 /* ExitButton.swift */; };
+		E1A8FE9529FAAD4B00FE9546 /* UIStackView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8FE9429FAAD4B00FE9546 /* UIStackView+Util.swift */; };
 		E1C6BF4529F027240002A768 /* NetworkErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C6BF4429F027240002A768 /* NetworkErrorViewController.swift */; };
 		E1C6BF4729F2C7FF0002A768 /* View+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C6BF4629F2C7FF0002A768 /* View+Util.swift */; };
 		E1D0AA3429CDC88100B8A8AD /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */; };
@@ -62,6 +63,7 @@
 		E17D163829D1E948001CF333 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUtil.swift; sourceTree = "<group>"; };
 		E1A8FE9229FA9F3200FE9546 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
+		E1A8FE9429FAAD4B00FE9546 /* UIStackView+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Util.swift"; sourceTree = "<group>"; };
 		E1C6BF4429F027240002A768 /* NetworkErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorViewController.swift; sourceTree = "<group>"; };
 		E1C6BF4629F2C7FF0002A768 /* View+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Util.swift"; sourceTree = "<group>"; };
 		E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				E1F9427629C8D5D60082BA11 /* Constants.swift */,
 				E1F9428529CA0CA10082BA11 /* UILabel+Util.swift */,
 				E1D0AA3929CDE1C300B8A8AD /* UIViewController+Util.swift */,
+				E1A8FE9429FAAD4B00FE9546 /* UIStackView+Util.swift */,
 				E1F9428A29CA25310082BA11 /* QuestionUtil.swift */,
 				E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */,
 				E1C6BF4629F2C7FF0002A768 /* View+Util.swift */,
@@ -423,6 +426,7 @@
 				E1C6BF4529F027240002A768 /* NetworkErrorViewController.swift in Sources */,
 				E1C6BF4729F2C7FF0002A768 /* View+Util.swift in Sources */,
 				E1F9427729C8D5D60082BA11 /* Constants.swift in Sources */,
+				E1A8FE9529FAAD4B00FE9546 /* UIStackView+Util.swift in Sources */,
 				E1D0AA4229CE3C0100B8A8AD /* CategoryViewController.swift in Sources */,
 				E1D0AA3D29CDEE5800B8A8AD /* CategoriesResponseDto.swift in Sources */,
 			);
