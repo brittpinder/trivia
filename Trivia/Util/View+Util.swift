@@ -13,4 +13,8 @@ extension UIView {
             addSubview(view)
         }
     }
+
+    func getScreenWidth() -> CGFloat? {
+        return window?.windowScene?.screen.bounds.width
+    }
 }

@@ -25,6 +25,11 @@ struct K {
         static let duration: CGFloat = 0.4
     }
 
+    struct Animations {
+        static let answerSlideDuration: CGFloat = 0.6
+        static let answerSlideDelay: CGFloat = 0.12
+    }
+
     struct Settings {
         static let numQuestions: Int = 5
     }
