@@ -137,6 +137,8 @@ extension QuestionViewController {
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: questionLabel.trailingAnchor, multiplier: K.Spacing.marginMultiplier),
             questionLabel.topAnchor.constraint(equalTo: progressLabel.bottomAnchor, constant: 8)
         ])
+
+        questionLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     }
 
     private func configureAnswerButtons() {
@@ -147,7 +149,8 @@ extension QuestionViewController {
         answerButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             answerButtonStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: K.Spacing.marginMultiplier),
-            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: answerButtonStackView.trailingAnchor, multiplier: K.Spacing.marginMultiplier)
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: answerButtonStackView.trailingAnchor, multiplier: K.Spacing.marginMultiplier),
+            answerButtonStackView.topAnchor.constraint(greaterThanOrEqualToSystemSpacingBelow: questionLabel.bottomAnchor, multiplier: K.Spacing.verticalMultiplier)
         ])
     }
 
