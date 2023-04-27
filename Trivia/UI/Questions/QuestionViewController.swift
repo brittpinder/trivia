@@ -114,9 +114,8 @@ extension QuestionViewController {
 
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            progressLabel.leadingAnchor.constraint(equalTo: questionLabel.leadingAnchor),
-            progressLabel.topAnchor.constraint(greaterThanOrEqualToSystemSpacingBelow: exitButton.bottomAnchor, multiplier: K.Spacing.verticalMultiplier),
-            progressLabel.bottomAnchor.constraint(equalTo: questionLabel.topAnchor, constant: -8)
+            progressLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: K.Spacing.marginMultiplier),
+            progressLabel.topAnchor.constraint(equalToSystemSpacingBelow: exitButton.bottomAnchor, multiplier: K.Spacing.verticalMultiplier)
         ])
     }
 
@@ -128,10 +127,9 @@ extension QuestionViewController {
 
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            questionLabel.centerYAnchor.constraint(lessThanOrEqualTo: view.centerYAnchor, constant: 0),
-            questionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             questionLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: K.Spacing.marginMultiplier),
-            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: questionLabel.trailingAnchor, multiplier: K.Spacing.marginMultiplier)
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: questionLabel.trailingAnchor, multiplier: K.Spacing.marginMultiplier),
+            questionLabel.topAnchor.constraint(equalTo: progressLabel.bottomAnchor, constant: 8)
         ])
     }
 
@@ -142,8 +140,6 @@ extension QuestionViewController {
 
         answerButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            answerButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            answerButtonStackView.topAnchor.constraint(greaterThanOrEqualToSystemSpacingBelow: questionLabel.bottomAnchor, multiplier: K.Spacing.verticalMultiplier),
             answerButtonStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: K.Spacing.marginMultiplier),
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: answerButtonStackView.trailingAnchor, multiplier: K.Spacing.marginMultiplier)
         ])
