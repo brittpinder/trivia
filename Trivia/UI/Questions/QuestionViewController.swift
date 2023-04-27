@@ -14,24 +14,24 @@ protocol QuestionViewControllerDelegate: AnyObject {
 
 class QuestionViewController: UIViewController {
 
-    var triviaSession: TriviaSession
-    var totalQuestions: Int
-    var questionIndex = 0
+    private var triviaSession: TriviaSession
+    private var totalQuestions: Int
+    private var questionIndex = 0
 
     weak var delegate: QuestionViewControllerDelegate?
 
-    var exitButton = ExitButton()
-    var progressLabel = UILabel()
-    var questionLabel = UILabel()
-    var answerButtons = [AnswerButton]()
-    var answerButtonStackView = UIStackView()
-    var nextButton = CapsuleButton(title: "Next", color: K.Colors.accent)
+    private var exitButton = ExitButton()
+    private var progressLabel = UILabel()
+    private var questionLabel = UILabel()
+    private var answerButtons = [AnswerButton]()
+    private var answerButtonStackView = UIStackView()
+    private var nextButton = CapsuleButton(title: "Next", color: K.Colors.accent)
 
     private var answerSlideOffset: CGFloat {
         return (view.getScreenWidth() ?? 500.0) + 50.0
     }
 
-    lazy var exitAlert: UIAlertController = {
+    lazy private var exitAlert: UIAlertController = {
         let alert = UIAlertController(title: "Exit Round", message: "Are you sure you want to exit this trivia round?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { [unowned self] (action) in self.exitTriviaSession() }))
         alert.addAction(UIAlertAction(title: "Keep Playing", style: .default, handler: nil))
