@@ -161,6 +161,11 @@ extension MainViewController: CategoryViewControllerDelegate {
 
 //MARK: - QuestionViewControllerDelegate
 extension MainViewController: QuestionViewControllerDelegate {
+    func exitRound() {
+        triviaSession = nil
+        showViewController(animated: false, viewController: categoryViewController)
+    }
+
     func lastQuestionWasAnswered() {
         guard let triviaSession else {
             assertionFailure("triviaSession should not be nil!")

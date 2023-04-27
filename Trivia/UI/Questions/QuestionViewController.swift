@@ -8,6 +8,7 @@
 import UIKit
 
 protocol QuestionViewControllerDelegate: AnyObject {
+    func exitRound()
     func lastQuestionWasAnswered()
 }
 
@@ -19,11 +20,19 @@ class QuestionViewController: UIViewController {
 
     weak var delegate: QuestionViewControllerDelegate?
 
+    var exitButton = ExitButton()
     var progressLabel = UILabel()
     var questionLabel = UILabel()
     var answerButtons = [AnswerButton]()
     var answerButtonStackView = UIStackView()
     var nextButton = CapsuleButton(title: "Next", color: K.Colors.accent)
+
+    lazy var exitAlert: UIAlertController = {
+        let alert = UIAlertController(title: "Exit Round", message: "Are you sure you want to exit this trivia round?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { [unowned self] (action) in self.exitTriviaSession() }))
+        alert.addAction(UIAlertAction(title: "Keep Playing", style: .default, handler: nil))
+        return alert
+    }()
 
     init(triviaSession: TriviaSession) {
         self.triviaSession = triviaSession
@@ -69,6 +78,10 @@ class QuestionViewController: UIViewController {
 
         nextButton.isHidden = true
     }
+
+    private func exitTriviaSession() {
+        delegate?.exitRound()
+    }
 }
 
 //MARK: - UI Configuration
@@ -77,12 +90,22 @@ extension QuestionViewController {
         view.backgroundColor = K.Colors.background
         navigationItem.setHidesBackButton(true, animated: false)
 
-        view.addSubviews(progressLabel, questionLabel, answerButtonStackView, nextButton)
+        view.addSubviews(exitButton, progressLabel, questionLabel, answerButtonStackView, nextButton)
 
+        configureExitButton()
         configureProgressLabel()
         configureQuestionLabel()
         configureAnswerButtons()
         configureNextButton()
+    }
+
+    private func configureExitButton() {
+        exitButton.addTarget(self, action: #selector(exitButtonPressed), for: .primaryActionTriggered)
+
+        NSLayoutConstraint.activate([
+            exitButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: K.Spacing.marginMultiplier),
+            exitButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: K.Spacing.marginMultiplier)
+        ])
     }
 
     private func configureProgressLabel() {
@@ -92,6 +115,7 @@ extension QuestionViewController {
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             progressLabel.leadingAnchor.constraint(equalTo: questionLabel.leadingAnchor),
+            progressLabel.topAnchor.constraint(greaterThanOrEqualToSystemSpacingBelow: exitButton.bottomAnchor, multiplier: K.Spacing.verticalMultiplier),
             progressLabel.bottomAnchor.constraint(equalTo: questionLabel.topAnchor, constant: -8)
         ])
     }
@@ -106,8 +130,8 @@ extension QuestionViewController {
         NSLayoutConstraint.activate([
             questionLabel.centerYAnchor.constraint(lessThanOrEqualTo: view.centerYAnchor, constant: 0),
             questionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            questionLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: K.Spacing.horizontalMultiplier),
-            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: questionLabel.trailingAnchor, multiplier: K.Spacing.horizontalMultiplier)
+            questionLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: K.Spacing.marginMultiplier),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: questionLabel.trailingAnchor, multiplier: K.Spacing.marginMultiplier)
         ])
     }
 
@@ -120,8 +144,8 @@ extension QuestionViewController {
         NSLayoutConstraint.activate([
             answerButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             answerButtonStackView.topAnchor.constraint(greaterThanOrEqualToSystemSpacingBelow: questionLabel.bottomAnchor, multiplier: K.Spacing.verticalMultiplier),
-            answerButtonStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: K.Spacing.horizontalMultiplier),
-            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: answerButtonStackView.trailingAnchor, multiplier: K.Spacing.horizontalMultiplier)
+            answerButtonStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: K.Spacing.marginMultiplier),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: answerButtonStackView.trailingAnchor, multiplier: K.Spacing.marginMultiplier)
         ])
     }
 
@@ -159,5 +183,9 @@ extension QuestionViewController {
 
     @objc private func nextButtonPressed() {
         goToNextQuestion()
+    }
+
+    @objc private func exitButtonPressed() {
+        present(exitAlert, animated: true, completion: nil)
     }
 }

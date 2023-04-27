@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E17D163929D1E948001CF333 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163829D1E948001CF333 /* Category.swift */; };
 		E17D163B29D1EC8E001CF333 /* CategoryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */; };
+		E1A8FE9329FA9F3200FE9546 /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8FE9229FA9F3200FE9546 /* ExitButton.swift */; };
 		E1C6BF4529F027240002A768 /* NetworkErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C6BF4429F027240002A768 /* NetworkErrorViewController.swift */; };
 		E1C6BF4729F2C7FF0002A768 /* View+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C6BF4629F2C7FF0002A768 /* View+Util.swift */; };
 		E1D0AA3429CDC88100B8A8AD /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		E17D163829D1E948001CF333 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUtil.swift; sourceTree = "<group>"; };
+		E1A8FE9229FA9F3200FE9546 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
 		E1C6BF4429F027240002A768 /* NetworkErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorViewController.swift; sourceTree = "<group>"; };
 		E1C6BF4629F2C7FF0002A768 /* View+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Util.swift"; sourceTree = "<group>"; };
 		E1D0AA3329CDC88100B8A8AD /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				E1F9427D29C8F20A0082BA11 /* CapsuleButton.swift */,
+				E1A8FE9229FA9F3200FE9546 /* ExitButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				E1F9427E29C8F20A0082BA11 /* CapsuleButton.swift in Sources */,
 				E1F9429029CA382C0082BA11 /* QuestionsResponseDto.swift in Sources */,
 				E1F9428629CA0CA10082BA11 /* UILabel+Util.swift in Sources */,
+				E1A8FE9329FA9F3200FE9546 /* ExitButton.swift in Sources */,
 				E1F9424129C8B5FC0082BA11 /* AppDelegate.swift in Sources */,
 				E1D0AA3429CDC88100B8A8AD /* LoadingViewController.swift in Sources */,
 				E1F9428029C9E8330082BA11 /* ResultsViewController.swift in Sources */,
