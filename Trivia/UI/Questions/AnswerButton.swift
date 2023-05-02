@@ -31,6 +31,15 @@ class AnswerButton: UIButton {
             case .highlightCorrect: return .white
             }
         }
+
+        var icon: UIImage? {
+            switch self {
+            case .normal: return nil
+            case .correct: return UIImage(systemName: "checkmark")
+            case .incorrect: return UIImage(systemName: "xmark")
+            case .highlightCorrect: return nil
+            }
+        }
     }
     private var buttonState = ButtonState.normal
 
@@ -86,34 +95,17 @@ extension AnswerButton {
     func setState(_ state: ButtonState) {
         self.buttonState = state
 
-        switch state {
-        case .normal:
-            backgroundColor = state.backgroundColor
-            setTitleColor(state.titleColor, for: .normal)
-            icon.isHidden = true
-        case .correct:
-            setTitleColor(state.titleColor, for: .normal)
-            icon.image = UIImage(systemName: "checkmark")
+        setTitleColor(state.titleColor, for: .normal)
+
+        if let iconImage = state.icon {
             icon.isHidden = false
-
-            UIViewPropertyAnimator(duration: K.Animations.answerColorChangeDuration, curve: .easeInOut) {
-                self.backgroundColor = state.backgroundColor
-            }.startAnimation()
-        case .incorrect:
-            setTitleColor(state.titleColor, for: .normal)
-            icon.image = UIImage(systemName: "xmark")
-            icon.isHidden = false
-
-            UIViewPropertyAnimator(duration: K.Animations.answerColorChangeDuration, curve: .easeInOut) {
-                self.backgroundColor = state.backgroundColor
-            }.startAnimation()
-        case .highlightCorrect:
-            setTitleColor(state.titleColor, for: .normal)
+            icon.image = iconImage
+        } else {
             icon.isHidden = true
-
-            UIViewPropertyAnimator(duration: K.Animations.answerColorChangeDuration, curve: .easeInOut) {
-                self.backgroundColor = state.backgroundColor
-            }.startAnimation()
         }
+
+        UIViewPropertyAnimator(duration: K.Animations.answerColorChangeDuration, curve: .easeInOut) {
+            self.backgroundColor = state.backgroundColor
+        }.startAnimation()
     }
 }
