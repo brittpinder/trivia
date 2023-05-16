@@ -27,7 +27,7 @@ class QuestionViewController: UIViewController {
     private var answerButtonStackView = UIStackView()
     private var nextButton = CapsuleButton(title: "Next", color: K.Colors.accent)
 
-    private var answerSlideOffset: CGFloat {
+    private var questionSlideOffset: CGFloat {
         return (view.getScreenWidth() ?? 500.0) + 50.0
     }
 
@@ -78,10 +78,10 @@ class QuestionViewController: UIViewController {
             answerButton.addTarget(self, action: #selector(answerSelected), for: .primaryActionTriggered)
             answerButtons.append(answerButton)
             answerButtonStackView.addArrangedSubview(answerButton)
-            answerButton.transform = CGAffineTransform(translationX: answerSlideOffset, y: 0)
+            answerButton.transform = CGAffineTransform(translationX: questionSlideOffset, y: 0)
         }
 
-        slideAnswersIn()
+        slideQuestionOut()
         nextButton.isHidden = true
     }
 
@@ -186,15 +186,36 @@ extension QuestionViewController {
         }
     }
 
-    private func slideAnswersOut() {
+    @objc private func nextButtonPressed() {
+        nextButton.isHidden = true
+        slideQuestionIn()
+    }
+
+    @objc private func exitButtonPressed() {
+        present(exitAlert, animated: true, completion: nil)
+    }
+}
+
+//MARK: - Animations
+extension QuestionViewController {
+    private func slideQuestionIn() {
+        UIView.animate(withDuration: K.Animations.questionSlideDuration,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 1,
+                       options: .curveEaseIn,
+                       animations: {
+            self.questionLabel.transform = CGAffineTransform(translationX: self.questionSlideOffset, y: 0)
+        })
+
         for (index, answerButton) in answerButtons.enumerated() {
-            UIView.animate(withDuration: K.Animations.answerSlideDuration,
-                           delay: Double(index) * K.Animations.answerSlideDelay,
+            UIView.animate(withDuration: K.Animations.questionSlideDuration,
+                           delay: Double(index + 1) * K.Animations.questionSlideDelay,
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 1,
                            options: .curveEaseIn,
                            animations: {
-                answerButton.transform = CGAffineTransform(translationX: -self.answerSlideOffset, y: 0)
+                answerButton.transform = CGAffineTransform(translationX: -self.questionSlideOffset, y: 0)
             }) { (_) in
                 if index == self.answerButtons.count - 1 {
                     self.goToNextQuestion()
@@ -203,10 +224,20 @@ extension QuestionViewController {
         }
     }
 
-    private func slideAnswersIn() {
+    private func slideQuestionOut() {
+        questionLabel.transform = CGAffineTransform(translationX: -self.questionSlideOffset, y: 0)
+        UIView.animate(withDuration: K.Animations.questionSlideDuration,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 1,
+                       options: .curveEaseIn,
+                       animations: {
+            self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+        })
+
         for (index, answerButton) in answerButtons.enumerated() {
-            UIView.animate(withDuration: K.Animations.answerSlideDuration,
-                           delay: Double(index) * K.Animations.answerSlideDelay,
+            UIView.animate(withDuration: K.Animations.questionSlideDuration,
+                           delay: Double(index + 1) * K.Animations.questionSlideDelay,
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 1,
                            options: .curveEaseIn,
@@ -214,14 +245,5 @@ extension QuestionViewController {
                 answerButton.transform = CGAffineTransform(translationX: 0, y: 0)
             })
         }
-    }
-
-    @objc private func nextButtonPressed() {
-        nextButton.isHidden = true
-        slideAnswersOut()
-    }
-
-    @objc private func exitButtonPressed() {
-        present(exitAlert, animated: true, completion: nil)
     }
 }
