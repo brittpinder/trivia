@@ -81,7 +81,7 @@ class QuestionViewController: UIViewController {
             answerButton.transform = CGAffineTransform(translationX: questionSlideOffset, y: 0)
         }
 
-        slideQuestionOut()
+        slideQuestionIn()
         nextButton.isHidden = true
     }
 
@@ -188,7 +188,7 @@ extension QuestionViewController {
 
     @objc private func nextButtonPressed() {
         nextButton.isHidden = true
-        slideQuestionIn()
+        slideQuestionOut()
     }
 
     @objc private func exitButtonPressed() {
@@ -198,7 +198,7 @@ extension QuestionViewController {
 
 //MARK: - Animations
 extension QuestionViewController {
-    private func slideQuestionIn() {
+    private func slideQuestionOut() {
         UIView.animate(withDuration: K.Animations.questionSlideDuration,
                        delay: 0,
                        usingSpringWithDamping: 1,
@@ -224,7 +224,7 @@ extension QuestionViewController {
         }
     }
 
-    private func slideQuestionOut() {
+    private func slideQuestionIn() {
         questionLabel.transform = CGAffineTransform(translationX: -self.questionSlideOffset, y: 0)
         UIView.animate(withDuration: K.Animations.questionSlideDuration,
                        delay: 0,
