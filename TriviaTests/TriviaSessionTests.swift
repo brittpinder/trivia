@@ -132,4 +132,8 @@ final class TriviaSessionTests: XCTestCase {
         XCTAssertEqual(triviaSession.correctPercentage, calculateCorrectPercentage(totalCorrect: totalCorrect, numberOfQuestions: validQuestions.count))
     }
 
+    func testTriviaSessionIsNilWithNoQuestions() {
+        XCTAssertNil(TriviaSession(questionData: []))
+    }
+
 }

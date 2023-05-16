@@ -17,7 +17,6 @@ class TriviaSession {
         self.questions = QuestionUtil.getQuestions(from: questionData)
 
         if self.questions.isEmpty {
-            assertionFailure("Failed to get any questions from questionData")
             return nil
         }
     }
