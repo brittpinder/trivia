@@ -28,7 +28,7 @@ final class CategoryDtoTests: XCTestCase {
         XCTAssertEqual(categoryDto.name, "Science")
     }
 
-    func testCategoryDtoFailsWithoutId() throws {
+    func testCategoryDtoFailsWithoutId() {
         let json = """
         {
              "name": "Science"
@@ -42,7 +42,7 @@ final class CategoryDtoTests: XCTestCase {
         XCTAssertThrowsError(try decoder.decode(CategoryDto.self, from: data))
     }
 
-    func testCategoryDtoFailsWithoutName() throws {
+    func testCategoryDtoFailsWithoutName() {
         let json = """
         {
              "id": 9
@@ -56,7 +56,7 @@ final class CategoryDtoTests: XCTestCase {
         XCTAssertThrowsError(try decoder.decode(CategoryDto.self, from: data))
     }
 
-    func testCategoryDtoFailsWithInvalidIdType() throws {
+    func testCategoryDtoFailsWithInvalidIdType() {
         let json = """
         {
              "id": "9",

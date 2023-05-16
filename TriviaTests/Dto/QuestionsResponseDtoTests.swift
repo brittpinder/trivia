@@ -53,7 +53,7 @@ final class QuestionsResponseDtoTests: XCTestCase {
 
     }
 
-    func testQuestionsResponseDtoFailsWithoutResponseCode() throws {
+    func testQuestionsResponseDtoFailsWithoutResponseCode() {
         let json = """
         {
             "results": [
@@ -88,7 +88,7 @@ final class QuestionsResponseDtoTests: XCTestCase {
         XCTAssertThrowsError(try decoder.decode(QuestionsResponseDto.self, from: data))
     }
 
-    func testQuestionsResponseDtoFailsWithoutResults() throws {
+    func testQuestionsResponseDtoFailsWithoutResults() {
         let json = """
         {
             "response_code": 0,

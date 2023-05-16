@@ -36,7 +36,7 @@ final class QuestionDtoTests: XCTestCase {
         XCTAssertEqual(questionDto.incorrectAnswers, ["Toronto", "Ontario", "Vancouver"])
     }
 
-    func testQuestionDtoFailsWithoutCategory() throws {
+    func testQuestionDtoFailsWithoutCategory() {
         let json = """
         {
              "question": "What is the capital of Canada?",
@@ -56,7 +56,7 @@ final class QuestionDtoTests: XCTestCase {
         XCTAssertThrowsError(try decoder.decode(QuestionDto.self, from: data))
     }
 
-    func testQuestionDtoFailsWithoutQuestion() throws {
+    func testQuestionDtoFailsWithoutQuestion() {
         let json = """
         {
              "category": "Geography",
@@ -76,7 +76,7 @@ final class QuestionDtoTests: XCTestCase {
         XCTAssertThrowsError(try decoder.decode(QuestionDto.self, from: data))
     }
 
-    func testQuestionDtoFailsWithMisspelledCorrectAnswer() throws {
+    func testQuestionDtoFailsWithMisspelledCorrectAnswer() {
         let json = """
         {
              "category": "Geography",
@@ -97,7 +97,7 @@ final class QuestionDtoTests: XCTestCase {
         XCTAssertThrowsError(try decoder.decode(QuestionDto.self, from: data))
     }
 
-    func testQuestionDtoFailsWithMisspelledIncorrectAnswers() throws {
+    func testQuestionDtoFailsWithMisspelledIncorrectAnswers() {
         let json = """
         {
              "category": "Geography",
