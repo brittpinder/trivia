@@ -76,7 +76,8 @@ extension AnswerButton {
 
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: 64).isActive = true
-        titleLabel?.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+        titleLabel?.heightAnchor.constraint(equalTo: heightAnchor, constant: -8).isActive = true
+        titleLabel?.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
 
         addSubview(icon)
 
