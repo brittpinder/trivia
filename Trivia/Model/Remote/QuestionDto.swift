@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct QuestionDto: Codable {
+struct QuestionDto: Codable, Equatable {
     let category: String
     let question: String
     let correctAnswer: String

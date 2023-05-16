@@ -42,7 +42,7 @@ final class CategoriesResponseDtoTests: XCTestCase {
         XCTAssertEqual(categoriesResponseDto.triviaCategories[2], CategoryDto(id: 11, name: "Geography"))
     }
 
-    func testValidCategoriesResponseDtoFailsWithMisspelledKey() throws {
+    func testCategoriesResponseDtoFailsWithMisspelledKey() throws {
         let json = """
         {
             "triviaCategories": [
