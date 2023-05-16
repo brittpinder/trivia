@@ -132,6 +132,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E1667CA92A14037900D19784 /* Dto */ = {
+			isa = PBXGroup;
+			children = (
+				E1667CA12A13FA4500D19784 /* QuestionDtoTests.swift */,
+				E1667CA32A13FE4600D19784 /* CategoryDtoTests.swift */,
+				E1667CA52A13FF9500D19784 /* CategoriesResponseDtoTests.swift */,
+				E1667CA72A14014600D19784 /* QuestionsResponseDtoTests.swift */,
+			);
+			path = Dto;
+			sourceTree = "<group>";
+		};
 		E1A8FE9129FA9D5100FE9546 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,11 +200,8 @@
 		E1F9425629C8B6000082BA11 /* TriviaTests */ = {
 			isa = PBXGroup;
 			children = (
+				E1667CA92A14037900D19784 /* Dto */,
 				E1667C9F2A13EF2D00D19784 /* QuestionTests.swift */,
-				E1667CA12A13FA4500D19784 /* QuestionDtoTests.swift */,
-				E1667CA32A13FE4600D19784 /* CategoryDtoTests.swift */,
-				E1667CA52A13FF9500D19784 /* CategoriesResponseDtoTests.swift */,
-				E1667CA72A14014600D19784 /* QuestionsResponseDtoTests.swift */,
 			);
 			path = TriviaTests;
 			sourceTree = "<group>";
