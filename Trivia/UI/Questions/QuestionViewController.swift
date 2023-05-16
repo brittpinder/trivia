@@ -199,13 +199,14 @@ extension QuestionViewController {
 //MARK: - Animations
 extension QuestionViewController {
     private func slideQuestionOut() {
-        UIView.animate(withDuration: K.Animations.questionSlideDuration,
+        UIView.animate(withDuration: K.Animations.questionSlideDuration + (CGFloat(answerButtons.count - 1) * K.Animations.questionSlideDelay),
                        delay: 0,
                        usingSpringWithDamping: 1,
                        initialSpringVelocity: 1,
                        options: .curveEaseIn,
                        animations: {
             self.questionLabel.transform = CGAffineTransform(translationX: self.questionSlideOffset, y: 0)
+            self.questionLabel.alpha = 0
         })
 
         for (index, answerButton) in answerButtons.enumerated() {
@@ -226,13 +227,15 @@ extension QuestionViewController {
 
     private func slideQuestionIn() {
         questionLabel.transform = CGAffineTransform(translationX: -self.questionSlideOffset, y: 0)
-        UIView.animate(withDuration: K.Animations.questionSlideDuration,
+        questionLabel.alpha = 0
+        UIView.animate(withDuration: K.Animations.questionSlideDuration + (CGFloat(answerButtons.count - 1) * K.Animations.questionSlideDelay),
                        delay: 0,
                        usingSpringWithDamping: 1,
                        initialSpringVelocity: 1,
                        options: .curveEaseIn,
                        animations: {
             self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+            self.questionLabel.alpha = 1
         })
 
         for (index, answerButton) in answerButtons.enumerated() {
