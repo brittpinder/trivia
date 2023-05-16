@@ -44,6 +44,8 @@ struct QuestionUtil {
 
             if let question = Question(question: questionText, answers: answers, correctIndex: correctIndex) {
                 questions.append(question)
+            } else {
+                assertionFailure("Failed to create Question!")
             }
         }
         return questions

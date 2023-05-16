@@ -13,9 +13,14 @@ struct Question {
     let correctIndex: Int
 
     init?(question: String, answers: [String], correctIndex: Int) {
-        guard answers.count > 0, correctIndex >= 0, correctIndex < answers.count else {
-            assertionFailure("Failed to create Question!")
+        guard !question.isEmpty, !answers.isEmpty, correctIndex >= 0, correctIndex < answers.count else {
             return nil
+        }
+
+        for answer in answers {
+            if answer.isEmpty {
+                return nil
+            }
         }
 
         self.question = question
