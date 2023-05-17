@@ -32,6 +32,11 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
         configureView()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        resultsDetailView.playProgressAnimation()
+    }
 }
 
 //MARK: - UI Configuration
