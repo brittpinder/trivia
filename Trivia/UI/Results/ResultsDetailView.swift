@@ -11,6 +11,7 @@ class ResultsDetailView: UIView {
 
     let stackView = UIStackView()
     let percentageLabel = UILabel()
+    let percentSignLabel = UILabel()
     let fractionLabel = UILabel()
 
     let percent: Int
@@ -36,14 +37,17 @@ class ResultsDetailView: UIView {
         addSubview(stackView)
         stackView.addArrangedSubviews(percentageLabel, fractionLabel)
 
+        addSubview(percentSignLabel)
+
         configureStackView()
         configurePercentageLabel()
+        configurePercentSignLabel()
         configureFractionLabel()
     }
 
     private func configureStackView() {
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 8
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -53,30 +57,28 @@ class ResultsDetailView: UIView {
     }
 
     private func configurePercentageLabel() {
-        percentageLabel.attributedText = makePercentageAttributed(percentage: percent)
+        percentageLabel.text = String(percent)
+        percentageLabel.font = UIFont.boldSystemFont(ofSize: 96)
         percentageLabel.textColor = .white
         percentageLabel.textAlignment = .center
         percentageLabel.removeVerticalPadding()
     }
 
+    private func configurePercentSignLabel() {
+        percentSignLabel.text = "%"
+        percentSignLabel.textColor = .white
+        percentSignLabel.font = UIFont.systemFont(ofSize: 24, weight: .light)
+        percentSignLabel.removeVerticalPadding()
+        percentSignLabel.translatesAutoresizingMaskIntoConstraints = false
+        percentSignLabel.leadingAnchor.constraint(equalTo: percentageLabel.trailingAnchor).isActive = true
+        percentSignLabel.topAnchor.constraint(equalTo: percentageLabel.topAnchor).isActive = true
+    }
+
     private func configureFractionLabel() {
-        fractionLabel.text = "\(numberCorrect) \\ \(totalQuestions)"
-        fractionLabel.font = UIFont.systemFont(ofSize: 28)
+        fractionLabel.text = "\(numberCorrect) / \(totalQuestions)"
+        fractionLabel.font = UIFont.systemFont(ofSize: 28, weight: .light)
         fractionLabel.textColor = .white
         fractionLabel.textAlignment = .center
         fractionLabel.removeVerticalPadding()
-    }
-
-    private func makePercentageAttributed(percentage: Int) -> NSMutableAttributedString {
-        let numberFont = UIFont.boldSystemFont(ofSize: 96)
-        let percentFont = UIFont.systemFont(ofSize: 28)
-
-        let numberString = NSMutableAttributedString(string: String(percentage), attributes: [.font: numberFont])
-
-        let baselineOffset = (numberFont.capHeight - percentFont.capHeight)
-        let percentString = NSAttributedString(string: "%", attributes: [.font: percentFont, .baselineOffset: baselineOffset])
-
-        numberString.append(percentString)
-        return numberString
     }
 }
