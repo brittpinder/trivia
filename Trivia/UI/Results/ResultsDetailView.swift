@@ -43,11 +43,28 @@ extension ResultsDetailView {
 
         addSubview(percentSignLabel)
 
+        configureCircles()
         configureStackView()
         configurePercentageLabel()
         configurePercentSignLabel()
         configureFractionLabel()
         configureProgressBar()
+    }
+
+    private func configureCircles() {
+        let circle1Path = UIBezierPath(arcCenter: self.center, radius: 140, startAngle: 0, endAngle: 2 * .pi, clockwise: true)
+
+        let circle1 = CAShapeLayer()
+        circle1.path = circle1Path.cgPath
+        circle1.fillColor = UIColor(white: 1, alpha: 0.1).cgColor
+        layer.addSublayer(circle1)
+
+        let circle2Path = UIBezierPath(arcCenter: self.center, radius: 120, startAngle: 0, endAngle: 2 * .pi, clockwise: true)
+
+        let circle2 = CAShapeLayer()
+        circle2.path = circle2Path.cgPath
+        circle2.fillColor = UIColor(white: 1, alpha: 0.1).cgColor
+        layer.addSublayer(circle2)
     }
 
     private func configureStackView() {
@@ -67,6 +84,11 @@ extension ResultsDetailView {
         percentageLabel.textColor = .white
         percentageLabel.textAlignment = .center
         percentageLabel.removeVerticalPadding()
+
+        percentageLabel.layer.shadowOffset = CGSize(width: 0, height: 3)
+        percentageLabel.layer.shadowOpacity = 0.2
+        percentageLabel.layer.shadowRadius = 2
+        percentageLabel.layer.shadowColor = CGColor.init(red: 0, green: 0, blue: 0, alpha: 1)
     }
 
     private func configurePercentSignLabel() {
@@ -88,7 +110,7 @@ extension ResultsDetailView {
     }
 
     private func configureProgressBar() {
-        let circularPath = UIBezierPath(arcCenter: self.center, radius: progressBarRadius, startAngle: -CGFloat.pi / 2, endAngle: 1.5 * CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: self.center, radius: progressBarRadius, startAngle: -.pi / 2, endAngle: 1.5 * .pi, clockwise: true)
 
         // Create track
         let trackShape = CAShapeLayer()
@@ -102,7 +124,7 @@ extension ResultsDetailView {
         progressBarShape.path = circularPath.cgPath
         progressBarShape.fillColor = UIColor.clear.cgColor
         progressBarShape.strokeColor = UIColor.systemGreen.cgColor
-        progressBarShape.lineWidth = progressBarWidth
+        progressBarShape.lineWidth = progressBarWidth - 2
         progressBarShape.strokeStart = 0
         progressBarShape.strokeEnd = 0
         progressBarShape.lineCap = CAShapeLayerLineCap.round
