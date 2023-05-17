@@ -13,6 +13,8 @@
 		E1667CA62A13FF9500D19784 /* CategoriesResponseDtoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1667CA52A13FF9500D19784 /* CategoriesResponseDtoTests.swift */; };
 		E1667CA82A14014600D19784 /* QuestionsResponseDtoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1667CA72A14014600D19784 /* QuestionsResponseDtoTests.swift */; };
 		E1667CAB2A1404CE00D19784 /* TriviaSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1667CAA2A1404CE00D19784 /* TriviaSessionTests.swift */; };
+		E1667CAF2A15386000D19784 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1667CAD2A15386000D19784 /* correct.mp3 */; };
+		E1667CB22A153C0500D19784 /* incorrect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1667CB12A153C0500D19784 /* incorrect.mp3 */; };
 		E17D163929D1E948001CF333 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163829D1E948001CF333 /* Category.swift */; };
 		E17D163B29D1EC8E001CF333 /* CategoryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */; };
 		E1A8FE9329FA9F3200FE9546 /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8FE9229FA9F3200FE9546 /* ExitButton.swift */; };
@@ -71,6 +73,8 @@
 		E1667CA52A13FF9500D19784 /* CategoriesResponseDtoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesResponseDtoTests.swift; sourceTree = "<group>"; };
 		E1667CA72A14014600D19784 /* QuestionsResponseDtoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsResponseDtoTests.swift; sourceTree = "<group>"; };
 		E1667CAA2A1404CE00D19784 /* TriviaSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaSessionTests.swift; sourceTree = "<group>"; };
+		E1667CAD2A15386000D19784 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
+		E1667CB12A153C0500D19784 /* incorrect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = incorrect.mp3; sourceTree = "<group>"; };
 		E17D163829D1E948001CF333 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUtil.swift; sourceTree = "<group>"; };
 		E1A8FE9229FA9F3200FE9546 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
@@ -145,6 +149,15 @@
 			path = Dto;
 			sourceTree = "<group>";
 		};
+		E1667CAC2A15385100D19784 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E1667CB12A153C0500D19784 /* incorrect.mp3 */,
+				E1667CAD2A15386000D19784 /* correct.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		E1A8FE9129FA9D5100FE9546 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +203,7 @@
 				E1F9427829C8EE2A0082BA11 /* Model */,
 				E1F9427229C8C8F40082BA11 /* UI */,
 				E1F9428429CA0C8D0082BA11 /* Util */,
+				E1667CAC2A15385100D19784 /* Sounds */,
 				E1F9424029C8B5FC0082BA11 /* AppDelegate.swift */,
 				E1F9424229C8B5FC0082BA11 /* SceneDelegate.swift */,
 				E1F9424929C8B5FF0082BA11 /* Assets.xcassets */,
@@ -398,8 +412,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1667CB22A153C0500D19784 /* incorrect.mp3 in Resources */,
 				E1F9424D29C8B5FF0082BA11 /* LaunchScreen.storyboard in Resources */,
 				E1F9424A29C8B5FF0082BA11 /* Assets.xcassets in Resources */,
+				E1667CAF2A15386000D19784 /* correct.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

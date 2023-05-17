@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 protocol QuestionViewControllerDelegate: AnyObject {
     func exitRound()
@@ -26,6 +27,8 @@ class QuestionViewController: UIViewController {
     private var answerButtons = [AnswerButton]()
     private var answerButtonStackView = UIStackView()
     private var nextButton = CapsuleButton(title: "Next", color: K.Colors.accent)
+
+    private var audioPlayer: AVAudioPlayer?
 
     private var questionSlideOffset: CGFloat {
         return (view.getScreenWidth() ?? 500.0) + 50.0
@@ -175,8 +178,10 @@ extension QuestionViewController {
 
         if result.isCorrect {
             sender.setState(.correct)
+            playCorrectSound()
         } else {
             sender.setState(.incorrect)
+            playIncorrectSound()
 
             guard result.correctIndex >= 0 && result.correctIndex < answerButtons.count else {
                 assertionFailure("Correct index is out of range!")
@@ -193,6 +198,26 @@ extension QuestionViewController {
 
     @objc private func exitButtonPressed() {
         present(exitAlert, animated: true, completion: nil)
+    }
+}
+
+//MARK: - Sound Effects
+extension QuestionViewController {
+    func playCorrectSound() {
+        let path = Bundle.main.path(forResource: K.Sounds.correct, ofType: ".mp3")!
+        let url = URL(fileURLWithPath: path)
+
+        audioPlayer = try? AVAudioPlayer(contentsOf: url)
+        audioPlayer?.play()
+    }
+
+    func playIncorrectSound() {
+        let path = Bundle.main.path(forResource: K.Sounds.incorrect, ofType: ".mp3")!
+        let url = URL(fileURLWithPath: path)
+
+        audioPlayer = try? AVAudioPlayer(contentsOf: url)
+        audioPlayer?.volume = 0.4
+        audioPlayer?.play()
     }
 }
 

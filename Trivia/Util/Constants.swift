@@ -34,4 +34,9 @@ struct K {
     struct Settings {
         static let numQuestions: Int = 10
     }
+
+    struct Sounds {
+        static let correct = "correct"
+        static let incorrect = "incorrect"
+    }
 }
