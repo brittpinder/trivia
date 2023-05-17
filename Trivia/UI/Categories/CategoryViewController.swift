@@ -56,6 +56,7 @@ extension CategoryViewController {
         collectionView.delegate = self
         collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
         collectionView.backgroundColor = .white
+        collectionView.showsVerticalScrollIndicator = false
 
         view.addSubview(collectionView)
 
