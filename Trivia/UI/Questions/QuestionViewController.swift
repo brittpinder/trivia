@@ -29,6 +29,7 @@ class QuestionViewController: UIViewController {
     private var nextButton = CapsuleButton(title: "Next", color: K.Colors.accent)
 
     private var audioPlayer: AVAudioPlayer?
+    private let hapticNotification = UINotificationFeedbackGenerator()
 
     private var questionSlideOffset: CGFloat {
         return (view.getScreenWidth() ?? 500.0) + 50.0
@@ -54,6 +55,7 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        hapticNotification.prepare()
         goToNextQuestion()
     }
 
@@ -209,6 +211,8 @@ extension QuestionViewController {
 
         audioPlayer = try? AVAudioPlayer(contentsOf: url)
         audioPlayer?.play()
+
+        hapticNotification.notificationOccurred(.success)
     }
 
     func playIncorrectSound() {
