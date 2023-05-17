@@ -31,7 +31,10 @@ class ResultsDetailView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
+//MARK: - UI Configuration
+extension ResultsDetailView {
     private func configureView() {
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -105,7 +108,10 @@ class ResultsDetailView: UIView {
         progressBarShape.lineCap = CAShapeLayerLineCap.round
         layer.addSublayer(progressBarShape)
     }
+}
 
+//MARK: - Actions
+extension ResultsDetailView {
     func playProgressAnimation() {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.toValue = Double(results.percent) / 100
