@@ -32,6 +32,6 @@ struct K {
     }
 
     struct Settings {
-        static let numQuestions: Int = 5
+        static let numQuestions: Int = 10
     }
 }
