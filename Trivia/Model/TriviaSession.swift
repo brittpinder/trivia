@@ -8,6 +8,13 @@
 import Foundation
 
 class TriviaSession {
+
+    struct Results: Equatable {
+        let percent: Int
+        let numberCorrect: Int
+        let totalQuestions: Int
+    }
+
     private let questions: [Question]
     private var questionIndex = -1
     private var currentQuestion: Question? = nil
@@ -53,5 +60,9 @@ class TriviaSession {
         }
         assertionFailure("Attempting to submit answer when there is no current question!")
         return (false, -1)
+    }
+
+    func getResults() -> Results {
+        return Results(percent: correctPercentage, numberCorrect: totalCorrect, totalQuestions: numberOfQuestions)
     }
 }

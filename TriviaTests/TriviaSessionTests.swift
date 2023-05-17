@@ -55,6 +55,7 @@ final class TriviaSessionTests: XCTestCase {
         XCTAssertNil(currentQuestion)
         XCTAssertEqual(triviaSession.totalCorrect, validQuestions.count)
         XCTAssertEqual(triviaSession.correctPercentage, 100)
+        XCTAssertEqual(triviaSession.getResults(), TriviaSession.Results(percent: 100, numberCorrect: validQuestions.count, totalQuestions: validQuestions.count))
     }
 
     func testTriviaSessionWithNoCorrectAnswers() {
@@ -91,6 +92,7 @@ final class TriviaSessionTests: XCTestCase {
         XCTAssertNil(currentQuestion)
         XCTAssertEqual(triviaSession.totalCorrect, 0)
         XCTAssertEqual(triviaSession.correctPercentage, 0)
+        XCTAssertEqual(triviaSession.getResults(), TriviaSession.Results(percent: 0, numberCorrect: 0, totalQuestions: validQuestions.count))
     }
 
     func testTriviaSessionWithSomeCorrectAnswers() {
@@ -130,6 +132,7 @@ final class TriviaSessionTests: XCTestCase {
         XCTAssertNil(currentQuestion)
         XCTAssertEqual(triviaSession.totalCorrect, totalCorrect)
         XCTAssertEqual(triviaSession.correctPercentage, calculateCorrectPercentage(totalCorrect: totalCorrect, numberOfQuestions: validQuestions.count))
+        XCTAssertEqual(triviaSession.getResults(), TriviaSession.Results(percent: triviaSession.correctPercentage, numberCorrect: triviaSession.totalCorrect, totalQuestions: validQuestions.count))
     }
 
     func testTriviaSessionIsNilWithNoQuestions() {

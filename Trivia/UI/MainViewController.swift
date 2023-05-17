@@ -171,7 +171,7 @@ extension MainViewController: QuestionViewControllerDelegate {
             assertionFailure("triviaSession should not be nil!")
             return
         }
-        resultsViewController = ResultsViewController(triviaSession: triviaSession)
+        resultsViewController = ResultsViewController(results: triviaSession.getResults())
         resultsViewController!.delegate = self
         showViewController(animated: false, viewController: resultsViewController!)
     }

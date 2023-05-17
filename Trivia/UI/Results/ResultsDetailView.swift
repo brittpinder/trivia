@@ -17,10 +17,10 @@ class ResultsDetailView: UIView {
     let numberCorrect: Int
     let totalQuestions: Int
 
-    init(percent: Int, numberCorrect: Int, totalQuestions: Int) {
-        self.percent = percent
-        self.numberCorrect = numberCorrect
-        self.totalQuestions = totalQuestions
+    init(results: TriviaSession.Results) {
+        self.percent = results.percent
+        self.numberCorrect = results.numberCorrect
+        self.totalQuestions = results.totalQuestions
         super.init(frame: .zero)
 
         configureView()
