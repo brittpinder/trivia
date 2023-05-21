@@ -73,6 +73,8 @@ extension CategoryViewController {
 //MARK: - UICollectionView
 extension CategoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // A: This assumes someone called triviaService.fetchCategories() first.
+        // Perhaps this controller needs to receive the categories in its constructor instead?
         let selectedCategoryId = triviaService.categories[indexPath.row].id
         delegate?.selectedCategory(id: selectedCategoryId)
     }
@@ -97,6 +99,7 @@ extension CategoryViewController: UICollectionViewDataSource {
 
 extension CategoryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // A: Can the next 2 lines be constants to reduce processing work?
         let insetWidth = 2 * edgeInset
         let widthBetweenCells = CGFloat(numColumns - 1) * spaceBetweenItems
         let cellWidth = (collectionView.frame.width - insetWidth - widthBetweenCells) / CGFloat(numColumns)
@@ -104,6 +107,7 @@ extension CategoryViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        // A: Can this return a constant?
        return UIEdgeInsets(top: edgeInset, left: edgeInset, bottom: edgeInset, right: edgeInset)
     }
 

@@ -8,6 +8,7 @@
 import UIKit
 
 protocol NetworkErrorViewControllerDelegate: AnyObject {
+    // A: To make this more reusable, perhaps this can be called "retryAction" or similar
     func tryFetchingCategoriesAgain()
 }
 

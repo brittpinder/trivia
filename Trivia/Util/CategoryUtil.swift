@@ -8,6 +8,11 @@
 import Foundation
 
 struct CategoryUtil {
+    /*
+     A: Without knowing about the Trivia API, it is not 100% clear what the keys here represent
+     We could turn it into a TriviaApiCategoryType enum, with fields (apiName, displayName, iconName)
+     If Swift doesn't suppor fast lookups for enums, we can still build a map out of the enum.
+    */
     static let categoryData: [String: Category] = [
         "General Knowledge": Category(displayName: "General", iconName: "questionmark"),
         "Entertainment: Books": Category(displayName: "Books", iconName: "book"),

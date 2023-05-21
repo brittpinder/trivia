@@ -9,6 +9,7 @@ import UIKit
 import AVFoundation
 
 protocol QuestionViewControllerDelegate: AnyObject {
+    // A: in the spirit of Swift delegates, perhaps didExitRound and didFinishRound could also work?
     func exitRound()
     func lastQuestionWasAnswered()
 }
@@ -29,6 +30,7 @@ class QuestionViewController: UIViewController {
     private var nextButton = CapsuleButton(title: "Next", color: K.Colors.accent)
 
     private var audioPlayer: AVAudioPlayer?
+    // A: maybe hapticFeedbackGenerator or similar?
     private let hapticNotification = UINotificationFeedbackGenerator()
 
     private var questionSlideOffset: CGFloat {
@@ -36,6 +38,7 @@ class QuestionViewController: UIViewController {
     }
 
     lazy private var exitAlert: UIAlertController = {
+        // A: Is Trivia Session equivalent to Round? If yes, perhaps we can call it round everywhere
         let alert = UIAlertController(title: "Exit Round", message: "Are you sure you want to exit this trivia round?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { [unowned self] (action) in self.exitTriviaSession() }))
         alert.addAction(UIAlertAction(title: "Keep Playing", style: .default, handler: nil))
@@ -61,6 +64,7 @@ class QuestionViewController: UIViewController {
 
     private func goToNextQuestion() {
         if let question = triviaSession.getNextQuestion() {
+            // A: It seems like this is 1-based, questionNumber might be more accurate
             questionIndex += 1
             displayQuestion(question)
         } else {
@@ -206,16 +210,19 @@ extension QuestionViewController {
 //MARK: - Sound Effects
 extension QuestionViewController {
     func playCorrectSound() {
+        // A: Can the URL or even the AVAudioPlayer be a constant to avoid extra work?
         let path = Bundle.main.path(forResource: K.Sounds.correct, ofType: ".mp3")!
         let url = URL(fileURLWithPath: path)
 
         audioPlayer = try? AVAudioPlayer(contentsOf: url)
+        // A: Do we need to stop playing or is that always done once?
         audioPlayer?.play()
 
         hapticNotification.notificationOccurred(.success)
     }
 
     func playIncorrectSound() {
+        // A: Can the URL or even the AVAudioPlayer be a constant to avoid extra work?
         let path = Bundle.main.path(forResource: K.Sounds.incorrect, ofType: ".mp3")!
         let url = URL(fileURLWithPath: path)
 

@@ -63,6 +63,7 @@ class TriviaSession {
     }
 
     func getResults() -> Results {
+        // A: Naming is slightly different here between local state and what we return, is that deliberate?
         return Results(percent: correctPercentage, numberCorrect: totalCorrect, totalQuestions: numberOfQuestions)
     }
 }

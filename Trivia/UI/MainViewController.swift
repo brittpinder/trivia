@@ -49,6 +49,7 @@ extension MainViewController {
     private func configureView() {
         view.backgroundColor = .white
 
+        // A: Can this be done in the constructor?
         networkErrorViewController.delegate = self
         categoryViewController.delegate = self
     }
@@ -58,12 +59,14 @@ extension MainViewController {
 extension MainViewController {
     private func fetchCategories() {
         // TODO: Show skeleton screen
+        // A: It looks like this is called twice, how can we make it being called once (per app start) only?
         triviaService.fetchCategories { [unowned self] (error) in
             DispatchQueue.main.async {
                 if let error {
                     print(error.rawValue)
                     self.showViewController(animated: false, viewController: self.networkErrorViewController)
                 } else {
+                    // A: Could this be done inside the view controller itself (e.g., in viewWillAppear)?
                     self.categoryViewController.reloadData()
                     self.showViewController(animated: false, viewController: self.categoryViewController)
                 }
@@ -71,6 +74,7 @@ extension MainViewController {
         }
     }
 
+    // A: Would it make sense for the category view controller (or a brand new controller) to "own" trivia sessions?
     private func fetchQuestions(category: Int) {
         triviaService.fetchQuestions(category: category, amount: K.Settings.numQuestions) { [unowned self] (result) in
             DispatchQueue.main.async {
