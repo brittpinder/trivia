@@ -1,5 +1,5 @@
 //
-//  TriviaSessionTests.swift
+//  TriviaRoundTests.swift
 //  TriviaTests
 //
 //  Created by Brittany Pinder on 2023-05-16.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import Trivia
 
-final class TriviaSessionTests: XCTestCase {
+final class TriviaRoundTests: XCTestCase {
 
     let validQuestions = [
         QuestionDto(category: "Games", question: "How many dots are on a die?", correctAnswer: "21", incorrectAnswers: ["25", "18", "6"]),
@@ -21,19 +21,19 @@ final class TriviaSessionTests: XCTestCase {
         return Int(percent.rounded(.toNearestOrAwayFromZero))
     }
 
-    func testTriviaSessionWithPerfectScore() {
-        guard let triviaSession = TriviaSession(questionData: validQuestions) else {
+    func testTriviaRoundWithPerfectScore() {
+        guard let triviaRound = TriviaRound(questionData: validQuestions) else {
             XCTFail()
             return
         }
 
-        XCTAssertEqual(triviaSession.numberOfQuestions, validQuestions.count)
+        XCTAssertEqual(triviaRound.numberOfQuestions, validQuestions.count)
 
         for i in 0..<validQuestions.count {
-            XCTAssertEqual(triviaSession.totalCorrect, i)
-            XCTAssertEqual(triviaSession.correctPercentage, calculateCorrectPercentage(totalCorrect: i, numberOfQuestions: validQuestions.count))
+            XCTAssertEqual(triviaRound.numberCorrect, i)
+            XCTAssertEqual(triviaRound.percentCorrect, calculateCorrectPercentage(totalCorrect: i, numberOfQuestions: validQuestions.count))
 
-            guard let currentQuestion = triviaSession.getNextQuestion() else {
+            guard let currentQuestion = triviaRound.getNextQuestion() else {
                 XCTFail()
                 return
             }
@@ -46,31 +46,31 @@ final class TriviaSessionTests: XCTestCase {
                 XCTAssertTrue(currentQuestion.answers.contains(answer))
             }
 
-            let result = triviaSession.submitAnswer(answerIndex: currentQuestion.correctIndex)
+            let result = triviaRound.submitAnswer(answerIndex: currentQuestion.correctIndex)
             XCTAssertEqual(result.isCorrect, true)
             XCTAssertEqual(result.correctIndex, currentQuestion.correctIndex)
         }
 
-        let currentQuestion = triviaSession.getNextQuestion()
+        let currentQuestion = triviaRound.getNextQuestion()
         XCTAssertNil(currentQuestion)
-        XCTAssertEqual(triviaSession.totalCorrect, validQuestions.count)
-        XCTAssertEqual(triviaSession.correctPercentage, 100)
-        XCTAssertEqual(triviaSession.getResults(), TriviaSession.Results(percent: 100, numberCorrect: validQuestions.count, totalQuestions: validQuestions.count))
+        XCTAssertEqual(triviaRound.numberCorrect, validQuestions.count)
+        XCTAssertEqual(triviaRound.percentCorrect, 100)
+        XCTAssertEqual(triviaRound.getResults(), TriviaRound.Results(percentCorrect: 100, numberCorrect: validQuestions.count, numberOfQuestions: validQuestions.count))
     }
 
-    func testTriviaSessionWithNoCorrectAnswers() {
-        guard let triviaSession = TriviaSession(questionData: validQuestions) else {
+    func testTriviaRoundWithNoCorrectAnswers() {
+        guard let triviaRound = TriviaRound(questionData: validQuestions) else {
             XCTFail()
             return
         }
 
-        XCTAssertEqual(triviaSession.numberOfQuestions, validQuestions.count)
+        XCTAssertEqual(triviaRound.numberOfQuestions, validQuestions.count)
 
         for i in 0..<validQuestions.count {
-            XCTAssertEqual(triviaSession.totalCorrect, 0)
-            XCTAssertEqual(triviaSession.correctPercentage, 0)
+            XCTAssertEqual(triviaRound.numberCorrect, 0)
+            XCTAssertEqual(triviaRound.percentCorrect, 0)
 
-            guard let currentQuestion = triviaSession.getNextQuestion() else {
+            guard let currentQuestion = triviaRound.getNextQuestion() else {
                 XCTFail()
                 return
             }
@@ -83,32 +83,32 @@ final class TriviaSessionTests: XCTestCase {
                 XCTAssertTrue(currentQuestion.answers.contains(answer))
             }
 
-            let result = triviaSession.submitAnswer(answerIndex: -1)
+            let result = triviaRound.submitAnswer(answerIndex: -1)
             XCTAssertEqual(result.isCorrect, false)
             XCTAssertEqual(result.correctIndex, currentQuestion.correctIndex)
         }
 
-        let currentQuestion = triviaSession.getNextQuestion()
+        let currentQuestion = triviaRound.getNextQuestion()
         XCTAssertNil(currentQuestion)
-        XCTAssertEqual(triviaSession.totalCorrect, 0)
-        XCTAssertEqual(triviaSession.correctPercentage, 0)
-        XCTAssertEqual(triviaSession.getResults(), TriviaSession.Results(percent: 0, numberCorrect: 0, totalQuestions: validQuestions.count))
+        XCTAssertEqual(triviaRound.numberCorrect, 0)
+        XCTAssertEqual(triviaRound.percentCorrect, 0)
+        XCTAssertEqual(triviaRound.getResults(), TriviaRound.Results(percentCorrect: 0, numberCorrect: 0, numberOfQuestions: validQuestions.count))
     }
 
-    func testTriviaSessionWithSomeCorrectAnswers() {
-        guard let triviaSession = TriviaSession(questionData: validQuestions) else {
+    func testTriviaRoundWithSomeCorrectAnswers() {
+        guard let triviaRound = TriviaRound(questionData: validQuestions) else {
             XCTFail()
             return
         }
 
-        XCTAssertEqual(triviaSession.numberOfQuestions, validQuestions.count)
+        XCTAssertEqual(triviaRound.numberOfQuestions, validQuestions.count)
 
         var totalCorrect = 0
         for i in 0..<validQuestions.count {
-            XCTAssertEqual(triviaSession.totalCorrect, totalCorrect)
-            XCTAssertEqual(triviaSession.correctPercentage, calculateCorrectPercentage(totalCorrect: totalCorrect, numberOfQuestions: validQuestions.count))
+            XCTAssertEqual(triviaRound.numberCorrect, totalCorrect)
+            XCTAssertEqual(triviaRound.percentCorrect, calculateCorrectPercentage(totalCorrect: totalCorrect, numberOfQuestions: validQuestions.count))
 
-            guard let currentQuestion = triviaSession.getNextQuestion() else {
+            guard let currentQuestion = triviaRound.getNextQuestion() else {
                 XCTFail()
                 return
             }
@@ -122,21 +122,21 @@ final class TriviaSessionTests: XCTestCase {
             }
 
             let guessCorrectly = i % 2 == 0
-            let result = triviaSession.submitAnswer(answerIndex: guessCorrectly ? currentQuestion.correctIndex : -1)
+            let result = triviaRound.submitAnswer(answerIndex: guessCorrectly ? currentQuestion.correctIndex : -1)
             XCTAssertEqual(result.isCorrect, guessCorrectly)
             XCTAssertEqual(result.correctIndex, currentQuestion.correctIndex)
             totalCorrect += guessCorrectly ? 1 : 0
         }
 
-        let currentQuestion = triviaSession.getNextQuestion()
+        let currentQuestion = triviaRound.getNextQuestion()
         XCTAssertNil(currentQuestion)
-        XCTAssertEqual(triviaSession.totalCorrect, totalCorrect)
-        XCTAssertEqual(triviaSession.correctPercentage, calculateCorrectPercentage(totalCorrect: totalCorrect, numberOfQuestions: validQuestions.count))
-        XCTAssertEqual(triviaSession.getResults(), TriviaSession.Results(percent: triviaSession.correctPercentage, numberCorrect: triviaSession.totalCorrect, totalQuestions: validQuestions.count))
+        XCTAssertEqual(triviaRound.numberCorrect, totalCorrect)
+        XCTAssertEqual(triviaRound.percentCorrect, calculateCorrectPercentage(totalCorrect: totalCorrect, numberOfQuestions: validQuestions.count))
+        XCTAssertEqual(triviaRound.getResults(), TriviaRound.Results(percentCorrect: triviaRound.percentCorrect, numberCorrect: triviaRound.numberCorrect, numberOfQuestions: validQuestions.count))
     }
 
-    func testTriviaSessionIsNilWithNoQuestions() {
-        XCTAssertNil(TriviaSession(questionData: []))
+    func testTriviaRoundIsNilWithNoQuestions() {
+        XCTAssertNil(TriviaRound(questionData: []))
     }
 
 }

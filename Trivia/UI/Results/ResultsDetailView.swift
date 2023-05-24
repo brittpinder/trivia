@@ -19,9 +19,9 @@ class ResultsDetailView: UIView {
     private let fractionLabel = UILabel()
     private let progressBarShape = CAShapeLayer()
 
-    private let results: TriviaSession.Results
+    private let results: TriviaRound.Results
 
-    init(results: TriviaSession.Results) {
+    init(results: TriviaRound.Results) {
         self.results = results
         super.init(frame: .zero)
 
@@ -79,7 +79,7 @@ extension ResultsDetailView {
     }
 
     private func configurePercentageLabel() {
-        percentageLabel.text = String(results.percent)
+        percentageLabel.text = String(results.percentCorrect)
         percentageLabel.font = UIFont.boldSystemFont(ofSize: 72)
         percentageLabel.textColor = .white
         percentageLabel.textAlignment = .center
@@ -102,7 +102,7 @@ extension ResultsDetailView {
     }
 
     private func configureFractionLabel() {
-        fractionLabel.text = "\(results.numberCorrect) / \(results.totalQuestions)"
+        fractionLabel.text = "\(results.numberCorrect) / \(results.numberOfQuestions)"
         fractionLabel.font = UIFont.systemFont(ofSize: 24, weight: .light)
         fractionLabel.textColor = UIColor(white: 1, alpha: 0.7)
         fractionLabel.textAlignment = .center
@@ -136,8 +136,8 @@ extension ResultsDetailView {
 extension ResultsDetailView {
     func playProgressAnimation() {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.toValue = Double(results.percent) / 100
-        animation.duration = animationDurationMultiplier * Double(results.percent)
+        animation.toValue = Double(results.percentCorrect) / 100
+        animation.duration = animationDurationMultiplier * Double(results.percentCorrect)
         animation.fillMode = CAMediaTimingFillMode.forwards
         animation.isRemovedOnCompletion = false
 

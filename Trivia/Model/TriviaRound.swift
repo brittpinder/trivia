@@ -1,5 +1,5 @@
 //
-//  TriviaSession.swift
+//  TriviaRound.swift
 //  Trivia
 //
 //  Created by Brittany Pinder on 2023-03-20.
@@ -7,18 +7,18 @@
 
 import Foundation
 
-class TriviaSession {
+class TriviaRound {
 
     struct Results: Equatable {
-        let percent: Int
+        let percentCorrect: Int
         let numberCorrect: Int
-        let totalQuestions: Int
+        let numberOfQuestions: Int
     }
 
     private let questions: [Question]
     private var questionIndex = -1
     private var currentQuestion: Question? = nil
-    private(set) var totalCorrect = 0
+    private(set) var numberCorrect = 0
 
     init?(questionData: [QuestionDto]) {
         self.questions = QuestionUtil.getQuestions(from: questionData)
@@ -32,8 +32,8 @@ class TriviaSession {
         return questions.count
     }
 
-    var correctPercentage: Int {
-        let percent = Float(totalCorrect) / Float(numberOfQuestions) * 100
+    var percentCorrect: Int {
+        let percent = Float(numberCorrect) / Float(numberOfQuestions) * 100
         return Int(percent.rounded(.toNearestOrAwayFromZero))
     }
 
@@ -52,7 +52,7 @@ class TriviaSession {
     func submitAnswer(answerIndex: Int) -> (isCorrect: Bool, correctIndex: Int) {
         if let currentQuestion {
             if answerIndex == currentQuestion.correctIndex {
-                totalCorrect += 1
+                numberCorrect += 1
                 return (true, currentQuestion.correctIndex)
             } else {
                 return (false, currentQuestion.correctIndex)
@@ -63,6 +63,6 @@ class TriviaSession {
     }
 
     func getResults() -> Results {
-        return Results(percent: correctPercentage, numberCorrect: totalCorrect, totalQuestions: numberOfQuestions)
+        return Results(percentCorrect: percentCorrect, numberCorrect: numberCorrect, numberOfQuestions: numberOfQuestions)
     }
 }

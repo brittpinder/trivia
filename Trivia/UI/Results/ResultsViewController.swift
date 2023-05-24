@@ -19,7 +19,7 @@ class ResultsViewController: UIViewController {
 
     weak var delegate: ResultsViewControllerDelegate?
 
-    init(results: TriviaSession.Results) {
+    init(results: TriviaRound.Results) {
         resultsDetailView = ResultsDetailView(results: results)
         super.init(nibName: nil, bundle: nil)
     }

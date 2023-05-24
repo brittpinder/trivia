@@ -18,7 +18,7 @@ class MainViewController: UIViewController {
     private var currentViewController: UIViewController?
 
     private var triviaService = TriviaService()
-    private var triviaSession: TriviaSession?
+    private var triviaRound: TriviaRound?
 
     lazy var errorAlert: UIAlertController = {
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
@@ -76,9 +76,9 @@ extension MainViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let questions):
-                    if let session = TriviaSession(questionData: questions) {
-                        self.triviaSession = session
-                        self.questionViewController = QuestionViewController(triviaSession: session)
+                    if let round = TriviaRound(questionData: questions) {
+                        self.triviaRound = round
+                        self.questionViewController = QuestionViewController(triviaRound: round)
                         self.questionViewController!.delegate = self
                         self.showViewController(animated: true, viewController: self.questionViewController!)
                         self.hideLoadingViewController(animated: true)
@@ -162,16 +162,16 @@ extension MainViewController: CategoryViewControllerDelegate {
 //MARK: - QuestionViewControllerDelegate
 extension MainViewController: QuestionViewControllerDelegate {
     func exitRound() {
-        triviaSession = nil
+        triviaRound = nil
         showViewController(animated: false, viewController: categoryViewController)
     }
 
     func lastQuestionWasAnswered() {
-        guard let triviaSession else {
-            assertionFailure("triviaSession should not be nil!")
+        guard let triviaRound else {
+            assertionFailure("triviaRound should not be nil!")
             return
         }
-        resultsViewController = ResultsViewController(results: triviaSession.getResults())
+        resultsViewController = ResultsViewController(results: triviaRound.getResults())
         resultsViewController!.delegate = self
         showViewController(animated: false, viewController: resultsViewController!)
     }

@@ -15,7 +15,7 @@ protocol QuestionViewControllerDelegate: AnyObject {
 
 class QuestionViewController: UIViewController {
 
-    private var triviaSession: TriviaSession
+    private var triviaRound: TriviaRound
     private var totalQuestions: Int
     private var questionIndex = 0
 
@@ -37,14 +37,14 @@ class QuestionViewController: UIViewController {
 
     lazy private var exitAlert: UIAlertController = {
         let alert = UIAlertController(title: "Exit Round", message: "Are you sure you want to exit this trivia round?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { [unowned self] (action) in self.exitTriviaSession() }))
+        alert.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { [unowned self] (action) in self.exitTriviaRound() }))
         alert.addAction(UIAlertAction(title: "Keep Playing", style: .default, handler: nil))
         return alert
     }()
 
-    init(triviaSession: TriviaSession) {
-        self.triviaSession = triviaSession
-        totalQuestions = triviaSession.numberOfQuestions
+    init(triviaRound: TriviaRound) {
+        self.triviaRound = triviaRound
+        totalQuestions = triviaRound.numberOfQuestions
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -60,7 +60,7 @@ class QuestionViewController: UIViewController {
     }
 
     private func goToNextQuestion() {
-        if let question = triviaSession.getNextQuestion() {
+        if let question = triviaRound.getNextQuestion() {
             questionIndex += 1
             displayQuestion(question)
         } else {
@@ -90,7 +90,7 @@ class QuestionViewController: UIViewController {
         nextButton.isHidden = true
     }
 
-    private func exitTriviaSession() {
+    private func exitTriviaRound() {
         delegate?.exitRound()
     }
 }
@@ -176,7 +176,7 @@ extension QuestionViewController {
         answerButtons.forEach { $0.isEnabled = false }
         nextButton.isHidden = false
 
-        let result = triviaSession.submitAnswer(answerIndex: sender.index)
+        let result = triviaRound.submitAnswer(answerIndex: sender.index)
 
         if result.isCorrect {
             sender.setState(.correct)
