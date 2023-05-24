@@ -21,7 +21,7 @@ class TriviaRound {
     private(set) var numberCorrect = 0
 
     init?(questionData: [QuestionDto]) {
-        self.questions = QuestionUtil.parseQuestions(from: questionData)
+        self.questions = QuestionUtil.createQuestions(from: questionData)
 
         if self.questions.isEmpty {
             return nil

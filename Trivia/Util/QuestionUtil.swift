@@ -8,7 +8,7 @@
 import Foundation
 
 struct QuestionUtil {
-    static func parseQuestions(from questionDtos: [QuestionDto]) -> [Question] {
+    static func createQuestions(from questionDtos: [QuestionDto]) -> [Question] {
         var questions = [Question]()
 
         for questionDto in questionDtos {
