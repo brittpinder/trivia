@@ -11,7 +11,7 @@ class MainViewController: UIViewController {
 
     private let loadingViewController = LoadingViewController()
     private let networkErrorViewController = NetworkErrorViewController()
-    private let categoryViewController: CategoryViewController
+    private var categoryViewController: CategoryViewController?
     private var questionViewController: QuestionViewController?
     private var resultsViewController: ResultsViewController?
 
@@ -48,24 +48,22 @@ class MainViewController: UIViewController {
 extension MainViewController {
     private func configureView() {
         view.backgroundColor = .white
-
         networkErrorViewController.delegate = self
-        categoryViewController.delegate = self
     }
 }
 
 //MARK: - Networking
 extension MainViewController {
     private func fetchCategories() {
-        // TODO: Show skeleton screen
         triviaService.fetchCategories { [unowned self] (error) in
             DispatchQueue.main.async {
                 if let error {
                     print(error.rawValue)
                     self.showViewController(animated: false, viewController: self.networkErrorViewController)
                 } else {
-                    self.categoryViewController.reloadData()
-                    self.showViewController(animated: false, viewController: self.categoryViewController)
+                    self.categoryViewController = CategoryViewController(categories: self.triviaService.categories)
+                    self.categoryViewController!.delegate = self
+                    self.showViewController(animated: false, viewController: self.categoryViewController!)
                 }
             }
         }
@@ -163,6 +161,10 @@ extension MainViewController: CategoryViewControllerDelegate {
 extension MainViewController: QuestionViewControllerDelegate {
     func didExitRound() {
         triviaRound = nil
+        guard let categoryViewController else {
+            assertionFailure("CategoryViewController should not be nil!")
+            return
+        }
         showViewController(animated: false, viewController: categoryViewController)
     }
 
@@ -180,6 +182,10 @@ extension MainViewController: QuestionViewControllerDelegate {
 //MARK: - ResultsViewControllerDelegate
 extension MainViewController: ResultsViewControllerDelegate {
     func playAgainPressed() {
+        guard let categoryViewController else {
+            assertionFailure("CategoryViewController should not be nil!")
+            return
+        }
         showViewController(animated: false, viewController: categoryViewController)
     }
 }

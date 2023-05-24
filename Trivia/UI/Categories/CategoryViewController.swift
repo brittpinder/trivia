@@ -21,10 +21,10 @@ class CategoryViewController: UIViewController {
 
     weak var delegate: CategoryViewControllerDelegate?
 
-    private var triviaService: TriviaService
+    private let categories: [CategoryDto]
 
-    init(triviaService: TriviaService) {
-        self.triviaService = triviaService
+    init(categories: [CategoryDto]) {
+        self.categories = categories
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -35,10 +35,6 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-    }
-
-    func reloadData() {
-        collectionView?.reloadData()
     }
 }
 
@@ -73,14 +69,14 @@ extension CategoryViewController {
 //MARK: - UICollectionView
 extension CategoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedCategoryId = triviaService.categories[indexPath.row].id
+        let selectedCategoryId = categories[indexPath.row].id
         delegate?.selectedCategory(id: selectedCategoryId)
     }
 }
 
 extension CategoryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return triviaService.categories.count
+        return categories.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -89,7 +85,7 @@ extension CategoryViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        let category = CategoryUtil.getCategory(for: triviaService.categories[indexPath.row].name)
+        let category = CategoryUtil.getCategory(for: categories[indexPath.row].name)
         cell.configure(with: category, index: indexPath.row)
         return cell
     }
