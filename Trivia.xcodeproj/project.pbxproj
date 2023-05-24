@@ -27,6 +27,7 @@
 		E1D0AA3E29CDEE5800B8A8AD /* CategoryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3C29CDEE5800B8A8AD /* CategoryDto.swift */; };
 		E1D0AA4029CE34B600B8A8AD /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA3F29CE34B600B8A8AD /* CategoryCell.swift */; };
 		E1D0AA4229CE3C0100B8A8AD /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D0AA4129CE3C0100B8A8AD /* CategoryViewController.swift */; };
+		E1F573582A1E902000B7BE2A /* StringUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F573572A1E902000B7BE2A /* StringUtil.swift */; };
 		E1F9424129C8B5FC0082BA11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424029C8B5FC0082BA11 /* AppDelegate.swift */; };
 		E1F9424329C8B5FC0082BA11 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424229C8B5FC0082BA11 /* SceneDelegate.swift */; };
 		E1F9424529C8B5FC0082BA11 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F9424429C8B5FC0082BA11 /* MainViewController.swift */; };
@@ -87,6 +88,7 @@
 		E1D0AA3C29CDEE5800B8A8AD /* CategoryDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDto.swift; sourceTree = "<group>"; };
 		E1D0AA3F29CE34B600B8A8AD /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		E1D0AA4129CE3C0100B8A8AD /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		E1F573572A1E902000B7BE2A /* StringUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtil.swift; sourceTree = "<group>"; };
 		E1F9423D29C8B5FC0082BA11 /* Trivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trivia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F9424029C8B5FC0082BA11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1F9424229C8B5FC0082BA11 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				E1F9428A29CA25310082BA11 /* QuestionUtil.swift */,
 				E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */,
 				E1C6BF4629F2C7FF0002A768 /* View+Util.swift */,
+				E1F573572A1E902000B7BE2A /* StringUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				E1D0AA3A29CDE1C300B8A8AD /* UIViewController+Util.swift in Sources */,
 				E1F9427529C8C92D0082BA11 /* AnswerButton.swift in Sources */,
 				E1F9427C29C8EFC60082BA11 /* TriviaRound.swift in Sources */,
+				E1F573582A1E902000B7BE2A /* StringUtil.swift in Sources */,
 				E1F9424529C8B5FC0082BA11 /* MainViewController.swift in Sources */,
 				E1F9428B29CA25310082BA11 /* QuestionUtil.swift in Sources */,
 				E1D0AA3E29CDEE5800B8A8AD /* CategoryDto.swift in Sources */,

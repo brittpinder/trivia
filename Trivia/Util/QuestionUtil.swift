@@ -12,12 +12,12 @@ struct QuestionUtil {
         var questions = [Question]()
 
         for questionDto in questionDtos {
-            guard let questionText = getDecodedString(htmlEncodedString: questionDto.question) else {
+            guard let questionText = StringUtil.getDecodedString(htmlEncodedString: questionDto.question) else {
                 assertionFailure("Failed to decode htmlEncoded string: \(questionDto.question)")
                 continue
             }
 
-            guard let correctAnswer = getDecodedString(htmlEncodedString: questionDto.correctAnswer) else {
+            guard let correctAnswer = StringUtil.getDecodedString(htmlEncodedString: questionDto.correctAnswer) else {
                 assertionFailure("Failed to decode htmlEncoded string: \(questionDto.correctAnswer)")
                 continue
             }
@@ -25,7 +25,7 @@ struct QuestionUtil {
 
             var failedToDecodeAnswer = false
             for answer in questionDto.incorrectAnswers {
-                guard let decodedAnswer = getDecodedString(htmlEncodedString: answer) else {
+                guard let decodedAnswer = StringUtil.getDecodedString(htmlEncodedString: answer) else {
                     assertionFailure("Failed to decode htmlEncoded string: \(answer)")
                     failedToDecodeAnswer = true
                     break
@@ -49,22 +49,5 @@ struct QuestionUtil {
             }
         }
         return questions
-    }
-
-    static func getDecodedString(htmlEncodedString: String) -> String? {
-        guard let data = htmlEncodedString.data(using: .utf8) else {
-            return nil
-        }
-
-        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
-            .documentType: NSAttributedString.DocumentType.html,
-            .characterEncoding: String.Encoding.utf8.rawValue
-        ]
-
-        guard let attributedString = try? NSAttributedString(data: data, options: options, documentAttributes: nil) else {
-            return nil
-        }
-
-        return attributedString.string
     }
 }
