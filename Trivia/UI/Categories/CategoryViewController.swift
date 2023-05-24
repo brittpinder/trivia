@@ -85,8 +85,8 @@ extension CategoryViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        let category = CategoryUtil.getCategory(for: categories[indexPath.row].name)
-        cell.configure(with: category, index: indexPath.row)
+        let categoryViewModel = CategoryUtil.getCategoryViewModel(for: categories[indexPath.row].name)
+        cell.configure(with: categoryViewModel, index: indexPath.row)
         return cell
     }
 }

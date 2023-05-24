@@ -9,7 +9,7 @@ import Foundation
 
 struct CategoryUtil {
 
-    static let categoryData: [String: CategoryViewModel] = [
+    static let categoryViewModelData: [String: CategoryViewModel] = [
         "General Knowledge": CategoryViewModel(displayName: "General", iconName: "questionmark"),
         "Entertainment: Books": CategoryViewModel(displayName: "Books", iconName: "book"),
         "Entertainment: Film": CategoryViewModel(displayName: "Film", iconName: "video.fill"),
@@ -36,8 +36,8 @@ struct CategoryUtil {
         "Entertainment: Cartoon & Animations": CategoryViewModel(displayName: "Cartoon & Animations", iconName: "questionmark"),
     ]
 
-    static func getCategory(for remoteName: String) -> CategoryViewModel {
-        return categoryData[remoteName] ?? CategoryViewModel(displayName: remoteName, iconName: "questionmark")
+    static func getCategoryViewModel(for remoteName: String) -> CategoryViewModel {
+        return categoryViewModelData[remoteName] ?? CategoryViewModel(displayName: remoteName, iconName: "questionmark")
     }
 }
 
