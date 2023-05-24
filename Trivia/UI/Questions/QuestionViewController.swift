@@ -28,7 +28,8 @@ class QuestionViewController: UIViewController {
     private var answerButtonStackView = UIStackView()
     private var nextButton = CapsuleButton(title: "Next", color: K.Colors.accent)
 
-    private var audioPlayer: AVAudioPlayer?
+    private var correctSoundPlayer: AVAudioPlayer?
+    private var incorrectSoundPlayer: AVAudioPlayer?
     private let hapticFeedbackGenerator = UINotificationFeedbackGenerator()
 
     private var questionSlideOffset: CGFloat {
@@ -46,6 +47,7 @@ class QuestionViewController: UIViewController {
         self.triviaRound = triviaRound
         totalQuestions = triviaRound.numberOfQuestions
         super.init(nibName: nil, bundle: nil)
+        loadSoundEffects()
     }
 
     required init?(coder: NSCoder) {
@@ -205,23 +207,29 @@ extension QuestionViewController {
 
 //MARK: - Sound Effects
 extension QuestionViewController {
+    private func loadSoundEffects() {
+        guard let url = Bundle.main.url(forResource: K.Sounds.correct, withExtension: ".mp3") else {
+            assertionFailure("Failed to find sound effect!")
+            return
+        }
+        correctSoundPlayer = try? AVAudioPlayer(contentsOf: url)
+
+        guard let url = Bundle.main.url(forResource: K.Sounds.incorrect, withExtension: ".mp3") else {
+            assertionFailure("Failed to find sound effect!")
+            return
+        }
+
+        incorrectSoundPlayer = try? AVAudioPlayer(contentsOf: url)
+        incorrectSoundPlayer?.volume = 0.4
+    }
+
     func playCorrectSound() {
-        let path = Bundle.main.path(forResource: K.Sounds.correct, ofType: ".mp3")!
-        let url = URL(fileURLWithPath: path)
-
-        audioPlayer = try? AVAudioPlayer(contentsOf: url)
-        audioPlayer?.play()
-
+        correctSoundPlayer?.play()
         hapticFeedbackGenerator.notificationOccurred(.success)
     }
 
     func playIncorrectSound() {
-        let path = Bundle.main.path(forResource: K.Sounds.incorrect, ofType: ".mp3")!
-        let url = URL(fileURLWithPath: path)
-
-        audioPlayer = try? AVAudioPlayer(contentsOf: url)
-        audioPlayer?.volume = 0.4
-        audioPlayer?.play()
+        incorrectSoundPlayer?.play()
     }
 }
 
