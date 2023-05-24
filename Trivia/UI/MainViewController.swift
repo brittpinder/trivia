@@ -145,7 +145,7 @@ extension MainViewController {
 
 //MARK: - NetworkErrorViewControllerDelegate
 extension MainViewController: NetworkErrorViewControllerDelegate {
-    func tryFetchingCategoriesAgain() {
+    func retryFetchingCategories() {
         fetchCategories()
     }
 }
@@ -161,12 +161,12 @@ extension MainViewController: CategoryViewControllerDelegate {
 
 //MARK: - QuestionViewControllerDelegate
 extension MainViewController: QuestionViewControllerDelegate {
-    func exitRound() {
+    func didExitRound() {
         triviaRound = nil
         showViewController(animated: false, viewController: categoryViewController)
     }
 
-    func lastQuestionWasAnswered() {
+    func didFinishRound() {
         guard let triviaRound else {
             assertionFailure("triviaRound should not be nil!")
             return

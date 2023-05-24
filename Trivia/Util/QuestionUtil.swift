@@ -8,23 +8,23 @@
 import Foundation
 
 struct QuestionUtil {
-    static func getQuestions(from questionData: [QuestionDto]) -> [Question] {
+    static func parseQuestions(from questionDtos: [QuestionDto]) -> [Question] {
         var questions = [Question]()
 
-        for data in questionData {
-            guard let questionText = getDecodedString(htmlEncodedString: data.question) else {
-                assertionFailure("Failed to decode htmlEncoded string: \(data.question)")
+        for questionDto in questionDtos {
+            guard let questionText = getDecodedString(htmlEncodedString: questionDto.question) else {
+                assertionFailure("Failed to decode htmlEncoded string: \(questionDto.question)")
                 continue
             }
 
-            guard let correctAnswer = getDecodedString(htmlEncodedString: data.correctAnswer) else {
-                assertionFailure("Failed to decode htmlEncoded string: \(data.correctAnswer)")
+            guard let correctAnswer = getDecodedString(htmlEncodedString: questionDto.correctAnswer) else {
+                assertionFailure("Failed to decode htmlEncoded string: \(questionDto.correctAnswer)")
                 continue
             }
             var answers = [correctAnswer]
 
             var failedToDecodeAnswer = false
-            for answer in data.incorrectAnswers {
+            for answer in questionDto.incorrectAnswers {
                 guard let decodedAnswer = getDecodedString(htmlEncodedString: answer) else {
                     assertionFailure("Failed to decode htmlEncoded string: \(answer)")
                     failedToDecodeAnswer = true

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NetworkErrorViewControllerDelegate: AnyObject {
-    func tryFetchingCategoriesAgain()
+    func retryFetchingCategories()
 }
 
 class NetworkErrorViewController: UIViewController {
@@ -74,6 +74,6 @@ extension NetworkErrorViewController {
 //MARK: - Actions
 extension NetworkErrorViewController {
     @objc func tryAgainButtonPressed() {
-        delegate?.tryFetchingCategoriesAgain()
+        delegate?.retryFetchingCategories()
     }
 }

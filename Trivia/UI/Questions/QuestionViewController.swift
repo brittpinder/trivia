@@ -9,15 +9,15 @@ import UIKit
 import AVFoundation
 
 protocol QuestionViewControllerDelegate: AnyObject {
-    func exitRound()
-    func lastQuestionWasAnswered()
+    func didExitRound()
+    func didFinishRound()
 }
 
 class QuestionViewController: UIViewController {
 
     private var triviaRound: TriviaRound
     private var totalQuestions: Int
-    private var questionIndex = 0
+    private var questionNumber = 0
 
     weak var delegate: QuestionViewControllerDelegate?
 
@@ -29,7 +29,7 @@ class QuestionViewController: UIViewController {
     private var nextButton = CapsuleButton(title: "Next", color: K.Colors.accent)
 
     private var audioPlayer: AVAudioPlayer?
-    private let hapticNotification = UINotificationFeedbackGenerator()
+    private let hapticFeedbackGenerator = UINotificationFeedbackGenerator()
 
     private var questionSlideOffset: CGFloat {
         return (view.getScreenWidth() ?? 500.0) + 50.0
@@ -55,21 +55,21 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        hapticNotification.prepare()
+        hapticFeedbackGenerator.prepare()
         goToNextQuestion()
     }
 
     private func goToNextQuestion() {
         if let question = triviaRound.getNextQuestion() {
-            questionIndex += 1
+            questionNumber += 1
             displayQuestion(question)
         } else {
-            delegate?.lastQuestionWasAnswered()
+            delegate?.didFinishRound()
         }
     }
 
     private func displayQuestion(_ question: Question) {
-        progressLabel.text = "Question \(questionIndex) of \(totalQuestions)"
+        progressLabel.text = "Question \(questionNumber) of \(totalQuestions)"
         questionLabel.text = question.question
 
         answerButtons.removeAll(keepingCapacity: true)
@@ -91,7 +91,7 @@ class QuestionViewController: UIViewController {
     }
 
     private func exitTriviaRound() {
-        delegate?.exitRound()
+        delegate?.didExitRound()
     }
 }
 
@@ -212,7 +212,7 @@ extension QuestionViewController {
         audioPlayer = try? AVAudioPlayer(contentsOf: url)
         audioPlayer?.play()
 
-        hapticNotification.notificationOccurred(.success)
+        hapticFeedbackGenerator.notificationOccurred(.success)
     }
 
     func playIncorrectSound() {
