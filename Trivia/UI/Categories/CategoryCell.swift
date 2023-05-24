@@ -24,9 +24,9 @@ class CategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with category: Category, index: Int) {
-        label.text = category.displayName
-        icon.image = UIImage(systemName: category.iconName, withConfiguration: UIImage.SymbolConfiguration(textStyle: .largeTitle))
+    func configure(with viewModel: CategoryViewModel, index: Int) {
+        label.text = viewModel.displayName
+        icon.image = UIImage(systemName: viewModel.iconName, withConfiguration: UIImage.SymbolConfiguration(textStyle: .largeTitle))
 
         let colorIndex = index % K.Colors.categoryColors.count
         backgroundColor = K.Colors.categoryColors[colorIndex]

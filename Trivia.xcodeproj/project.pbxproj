@@ -15,7 +15,7 @@
 		E1667CAB2A1404CE00D19784 /* TriviaRoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1667CAA2A1404CE00D19784 /* TriviaRoundTests.swift */; };
 		E1667CAF2A15386000D19784 /* correct.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1667CAD2A15386000D19784 /* correct.mp3 */; };
 		E1667CB22A153C0500D19784 /* incorrect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1667CB12A153C0500D19784 /* incorrect.mp3 */; };
-		E17D163929D1E948001CF333 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163829D1E948001CF333 /* Category.swift */; };
+		E17D163929D1E948001CF333 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163829D1E948001CF333 /* CategoryViewModel.swift */; };
 		E17D163B29D1EC8E001CF333 /* CategoryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */; };
 		E1A8FE9329FA9F3200FE9546 /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8FE9229FA9F3200FE9546 /* ExitButton.swift */; };
 		E1A8FE9529FAAD4B00FE9546 /* UIStackView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A8FE9429FAAD4B00FE9546 /* UIStackView+Util.swift */; };
@@ -76,7 +76,7 @@
 		E1667CAA2A1404CE00D19784 /* TriviaRoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaRoundTests.swift; sourceTree = "<group>"; };
 		E1667CAD2A15386000D19784 /* correct.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correct.mp3; sourceTree = "<group>"; };
 		E1667CB12A153C0500D19784 /* incorrect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = incorrect.mp3; sourceTree = "<group>"; };
-		E17D163829D1E948001CF333 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E17D163829D1E948001CF333 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		E17D163A29D1EC8E001CF333 /* CategoryUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUtil.swift; sourceTree = "<group>"; };
 		E1A8FE9229FA9F3200FE9546 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
 		E1A8FE9429FAAD4B00FE9546 /* UIStackView+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Util.swift"; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 				E1F9428C29CA37B90082BA11 /* Remote */,
 				E1F9427929C8EE3A0082BA11 /* Question.swift */,
 				E1F9427B29C8EFC60082BA11 /* TriviaRound.swift */,
-				E17D163829D1E948001CF333 /* Category.swift */,
+				E17D163829D1E948001CF333 /* CategoryViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -463,7 +463,7 @@
 				E1F9428329C9F1290082BA11 /* ResultsDetailView.swift in Sources */,
 				E1F9424329C8B5FC0082BA11 /* SceneDelegate.swift in Sources */,
 				E17D163B29D1EC8E001CF333 /* CategoryUtil.swift in Sources */,
-				E17D163929D1E948001CF333 /* Category.swift in Sources */,
+				E17D163929D1E948001CF333 /* CategoryViewModel.swift in Sources */,
 				E1D0AA4029CE34B600B8A8AD /* CategoryCell.swift in Sources */,
 				E1F9427A29C8EE3A0082BA11 /* Question.swift in Sources */,
 				E1C6BF4529F027240002A768 /* NetworkErrorViewController.swift in Sources */,

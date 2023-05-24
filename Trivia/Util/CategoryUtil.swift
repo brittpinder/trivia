@@ -8,35 +8,36 @@
 import Foundation
 
 struct CategoryUtil {
-    static let categoryData: [String: Category] = [
-        "General Knowledge": Category(displayName: "General", iconName: "questionmark"),
-        "Entertainment: Books": Category(displayName: "Books", iconName: "book"),
-        "Entertainment: Film": Category(displayName: "Film", iconName: "video.fill"),
-        "Entertainment: Music": Category(displayName: "Music", iconName: "music.note"),
-        "Entertainment: Musicals & Theatres": Category(displayName: "Theatre", iconName: "theatermasks.fill"),
-        "Entertainment: Television": Category(displayName: "Television", iconName: "tv"),
-        "Entertainment: Video Games": Category(displayName: "Video Games", iconName: "gamecontroller.fill"),
-        "Entertainment: Board Games": Category(displayName: "Board Games", iconName: "dice.fill"),
-        "Science & Nature": Category(displayName: "Science & Nature", iconName: "leaf.fill"),
-        "Science: Computers": Category(displayName: "Computers", iconName: "desktopcomputer"),
-        "Science: Mathematics": Category(displayName: "Mathematics", iconName: "plus.forwardslash.minus"),
-        "Mythology": Category(displayName: "Mythology", iconName: "questionmark"),
-        "Sports": Category(displayName: "Sports", iconName: "sportscourt.fill"),
-        "Geography": Category(displayName: "Geography", iconName: "globe.americas.fill"),
-        "History": Category(displayName: "History", iconName: "clock.fill"),
-        "Politics": Category(displayName: "Politics", iconName: "building.columns.fill"),
-        "Art": Category(displayName: "Art", iconName: "paintbrush.pointed.fill"),
-        "Celebrities": Category(displayName: "Celebrities", iconName: "star.fill"),
-        "Animals": Category(displayName: "Animals", iconName: "tortoise.fill"),
-        "Vehicles": Category(displayName: "Vehicles", iconName: "car.fill"),
-        "Entertainment: Comics": Category(displayName: "Comics", iconName: "captions.bubble.fill"),
-        "Science: Gadgets": Category(displayName: "Gadgets", iconName: "ipod"),
-        "Entertainment: Japanese Anime & Manga": Category(displayName: "Japanese Anime & Manga", iconName: "questionmark"),
-        "Entertainment: Cartoon & Animations": Category(displayName: "Cartoon & Animations", iconName: "questionmark"),
+
+    static let categoryData: [String: CategoryViewModel] = [
+        "General Knowledge": CategoryViewModel(displayName: "General", iconName: "questionmark"),
+        "Entertainment: Books": CategoryViewModel(displayName: "Books", iconName: "book"),
+        "Entertainment: Film": CategoryViewModel(displayName: "Film", iconName: "video.fill"),
+        "Entertainment: Music": CategoryViewModel(displayName: "Music", iconName: "music.note"),
+        "Entertainment: Musicals & Theatres": CategoryViewModel(displayName: "Theatre", iconName: "theatermasks.fill"),
+        "Entertainment: Television": CategoryViewModel(displayName: "Television", iconName: "tv"),
+        "Entertainment: Video Games": CategoryViewModel(displayName: "Video Games", iconName: "gamecontroller.fill"),
+        "Entertainment: Board Games": CategoryViewModel(displayName: "Board Games", iconName: "dice.fill"),
+        "Science & Nature": CategoryViewModel(displayName: "Science & Nature", iconName: "leaf.fill"),
+        "Science: Computers": CategoryViewModel(displayName: "Computers", iconName: "desktopcomputer"),
+        "Science: Mathematics": CategoryViewModel(displayName: "Mathematics", iconName: "plus.forwardslash.minus"),
+        "Mythology": CategoryViewModel(displayName: "Mythology", iconName: "questionmark"),
+        "Sports": CategoryViewModel(displayName: "Sports", iconName: "sportscourt.fill"),
+        "Geography": CategoryViewModel(displayName: "Geography", iconName: "globe.americas.fill"),
+        "History": CategoryViewModel(displayName: "History", iconName: "clock.fill"),
+        "Politics": CategoryViewModel(displayName: "Politics", iconName: "building.columns.fill"),
+        "Art": CategoryViewModel(displayName: "Art", iconName: "paintbrush.pointed.fill"),
+        "Celebrities": CategoryViewModel(displayName: "Celebrities", iconName: "star.fill"),
+        "Animals": CategoryViewModel(displayName: "Animals", iconName: "tortoise.fill"),
+        "Vehicles": CategoryViewModel(displayName: "Vehicles", iconName: "car.fill"),
+        "Entertainment: Comics": CategoryViewModel(displayName: "Comics", iconName: "captions.bubble.fill"),
+        "Science: Gadgets": CategoryViewModel(displayName: "Gadgets", iconName: "ipod"),
+        "Entertainment: Japanese Anime & Manga": CategoryViewModel(displayName: "Japanese Anime & Manga", iconName: "questionmark"),
+        "Entertainment: Cartoon & Animations": CategoryViewModel(displayName: "Cartoon & Animations", iconName: "questionmark"),
     ]
 
-    static func getCategory(for remoteName: String) -> Category {
-        return categoryData[remoteName] ?? Category(displayName: remoteName, iconName: "questionmark")
+    static func getCategory(for remoteName: String) -> CategoryViewModel {
+        return categoryData[remoteName] ?? CategoryViewModel(displayName: remoteName, iconName: "questionmark")
     }
 }
 
